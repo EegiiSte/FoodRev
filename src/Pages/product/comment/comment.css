@@ -1,0 +1,97 @@
+.displayJustCenAlinCen {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.displayJustCenAlinEnd {
+  display: flex;
+  justify-content: center;
+  align-items: end;
+}
+.displayJustCenAlinStart {
+  display: flex;
+  justify-content: center;
+  align-items: start;
+}
+.displayAlinCenter {
+  display: flex;
+  align-items: center;
+}
+
+.borderRed {
+  border: 1px solid red;
+}
+.borderR5 {
+  border-radius: 5px;
+}
+
+.borderR5 {
+  border-radius: 10px;
+}
+/* ---------------------------------------------------------------- */
+.commentMainBox {
+  margin-top: 10px;
+  padding: 10px;
+  width: 640px;
+
+  box-shadow: 0px 0px 10px gray;
+
+  display: flex;
+  flex-direction: row;
+}
+
+.userImageComment {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  padding: 10px;
+}
+.userNameComment {
+  display: flex;
+  justify-content: start;
+  padding-top: 10px;
+}
+.commentSecondBox {
+  margin-top: 10px;
+  padding: 10px;
+  width: 540px;
+  box-shadow: 0px 0px 10px gray;
+  border-radius: 5px;
+}
+.commentTextBox {
+}
+
+.bottomButtonBox {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  gap: 20px;
+  margin-top: 15px;
+  align-items: center;
+}
+.LikeReplyButtonBox {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  align-items: center;
+}
+
+.likeCountBox {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+.dislikeCountBox {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+.replyButton {
+  cursor: pointer;
+  width: 60px;
+  height: 20px;
+}
+.editDeleteButtonBox {
+  flex-direction: row;
+  gap: 20px;
+}

@@ -1,0 +1,11 @@
+.OverDisAlign {
+  overflow: scroll;
+  display: flex;
+  align-items: start;
+}
+
+.buttonEditProduct {
+  cursor: pointer;
+  width: 60px;
+  height: 20px;
+}

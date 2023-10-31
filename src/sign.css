@@ -1,0 +1,202 @@
+.body {
+  width: 100vw;
+  height: 100vh;
+  padding: 0px;
+  margin: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  background-size: cover;
+  background-position: center;
+  background-color: transparent;
+  /* background-image: url(https://images.unsplash.com/photo-1622976479615-38700d470a1c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2898&q=80); */
+  /* background-image: url(https://images.unsplash.com/photo-1622976479615-38700d470a1c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2898&q=80); */
+  /* background-image: url(https://images.unsplash.com/photo-1648914171385-0d84a40b3948?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2940&q=80); */
+}
+.homeMainBox {
+  /* height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column; */
+}
+.homeButtonBox {
+  flex-direction: row;
+}
+
+.mainBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  /* border: 1px solid red; */
+}
+.mainSecondBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.header {
+  color: white;
+}
+.signbox {
+  color: white;
+  /* margin-top: 20px; */
+}
+
+.inputBox {
+}
+.lineName {
+  font-size: 15px;
+}
+.lineEmail {
+  font-size: 15px;
+}
+.linePassword {
+  font-size: 15px;
+}
+
+#notificationName {
+  display: flex;
+  color: red;
+  font-size: 12px;
+}
+#notificationEmail {
+  display: flex;
+  color: red;
+  font-size: 12px;
+}
+#notificationPassword {
+  display: flex;
+  color: red;
+  font-size: 12px;
+}
+#notificationCheckBox {
+  display: flex;
+  color: red;
+  font-size: 12px;
+}
+#notificationRequiredBox {
+  margin-top: 0px;
+  display: flex;
+  color: red;
+  font-size: 12px;
+}
+
+.inputLineName {
+  height: 20px;
+  width: 300px;
+  border: 1px solid;
+  border-radius: 5px;
+}
+.inputLineEmail {
+  height: 20px;
+  width: 300px;
+  border: 1px solid lightgray;
+  border-radius: 5px;
+}
+.inputLinePassword {
+  height: 20px;
+  width: 300px;
+  border: 1px solid lightgray;
+  border-radius: 5px;
+}
+#showPasswordBox {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+}
+
+.signButtonBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.SignButton {
+  height: 30px;
+  width: 300px;
+  background-color: green;
+  border-radius: 5px;
+  color: white;
+}
+.checkBox {
+  display: flex;
+  flex-direction: row;
+  margin: 10px;
+}
+.checkBoxButton {
+  /* height: 10px;
+  width: 10px;
+  border: red; */
+}
+.notiwords {
+  font-size: 10px;
+  color: rgb(142, 134, 134);
+}
+.footerBox {
+  /* height: 10px; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.orLineBox {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  color: lightgray;
+  font-size: 10px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+.orLine {
+  height: 0px;
+  width: 140px;
+  border: 1px solid lightgray;
+}
+
+.signToBox {
+  display: flex;
+}
+.signToButton {
+  height: 20px;
+  width: 130px;
+  margin: 15px;
+  font-size: 12px;
+  border-radius: 5px;
+  border: lightgray;
+  /* display: flex;
+  flex-direction: column;
+  flex-wrap: wrap; */
+}
+.signButtonApple {
+}
+
+.footerBottomBox {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.footerToSign {
+  margin-left: 10px;
+  height: 30px;
+  width: 70px;
+
+  color: blue;
+  padding-left: 10px;
+  display: flex;
+  align-items: center;
+}
+
+#notificationCheckBox {
+  margin-left: 10px;
+}
+.secondHeader {
+  font-size: 12px;
+  color: white;
+  margin-top: -20px;
+  margin-bottom: 40px;
+}
