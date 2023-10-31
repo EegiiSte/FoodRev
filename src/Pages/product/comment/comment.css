@@ -8,6 +8,11 @@
   justify-content: center;
   align-items: end;
 }
+.displayJustEndAlinCen {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+}
 .displayJustCenAlinStart {
   display: flex;
   justify-content: center;
@@ -27,6 +32,20 @@
 
 .borderR5 {
   border-radius: 10px;
+}
+.borderShadowGray {
+  box-shadow: 0px 0px 10px gray;
+}
+.padding10 {
+  padding: 10px;
+}
+.marginTop10 {
+  margin-top: 10px;
+}
+.commentButton {
+  cursor: pointer;
+  width: 50px;
+  height: 20px;
 }
 /* ---------------------------------------------------------------- */
 .commentMainBox {
@@ -94,4 +113,29 @@
 .editDeleteButtonBox {
   flex-direction: row;
   gap: 20px;
+}
+/*---------reply----------------------*/
+.replyCommentMainBox {
+  display: flex;
+  justify-content: end;
+  flex-direction: column;
+}
+
+.replyInputBox {
+  flex-direction: row;
+  gap: 10px;
+}
+.replyInput {
+  margin-top: 10px;
+  padding: 10px;
+  width: 480px;
+
+  border: 1px solid yellow;
+}
+.replySendButton {
+  border: 1px solid yellow;
+
+  cursor: pointer;
+  width: 50px;
+  height: 37px;
 }

@@ -177,12 +177,7 @@ function Comment(props) {
                     {comment.userId === userId && (
                       <div className="  editDeleteButtonBox displayAlinCenter">
                         <button
-                          className="borderRed"
-                          style={{
-                            cursor: "pointer",
-                            width: "50px",
-                            height: "20px",
-                          }}
+                          className=" commentButton"
                           onClick={(e) => {
                             handelOpenEditModal(comment);
                           }}
@@ -190,11 +185,7 @@ function Comment(props) {
                           Edit
                         </button>
                         <button
-                          style={{
-                            cursor: "pointer",
-                            width: "50px",
-                            height: "20px",
-                          }}
+                          className=" commentButton"
                           onClick={(e) => {
                             hanldeDeleteComment(comment.commentId);
                           }}
@@ -206,48 +197,20 @@ function Comment(props) {
                   </div>
                 </div>
                 <div // comment dotroh comment ehelj bna
-                  style={{
-                    display: "flex",
-                    justifyContent: "end",
-                    flexDirection: "column",
-                  }}
+                  className=" replyCommentMainBox"
                 >
                   {showReply && comment.commentId === parentCommentId && (
-                    <div
-                      style={{
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "end",
-                        flexDirection: "row",
-                        gap: "10px",
-                      }}
-                    >
+                    <div className=" replyInputBox displayJustEndAlinCen borderR5 borderShadowGray">
                       <input
+                        className=" replyInput"
                         onChange={handleInputReplyValue}
                         placeholder="Enter reply comment"
                         value={inputReplyValue}
-                        style={{
-                          marginTop: "10px",
-                          padding: "10px",
-                          width: "480px",
-                          // height: "10%",
-                          border: "1px solid yellow",
-                          boxShadow: "0px 0px 10px gray",
-                          borderRadius: "5px",
-                        }}
                       ></input>
 
                       <button
-                        style={{
-                          border: "1px solid yellow",
-                          boxShadow: "0px 0px 10px gray",
-                          borderRadius: "5px",
-                          marginTop: "10px",
-                          padding: "10px",
-                          cursor: "pointer",
-                          width: "50px",
-                          height: "37px",
-                        }}
+                        className="borderShadowGray marginTop10 padding10 borderR5 replySendButton"
+                        style={{}}
                         onClick={(e) => {
                           handleSendReplyButton(comment);
                         }}
