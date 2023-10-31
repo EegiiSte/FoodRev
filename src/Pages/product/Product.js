@@ -10,7 +10,7 @@ import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { blogsCollection, commentCollection } from "../../firebase/myFirebase";
 import Header from "../../components/Header";
-import Comment from "./comment/Comment";
+import Comments from "./comment/Comments";
 import EditProduct from "./EditProduct";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -341,7 +341,7 @@ function Product(props) {
               }}
             >
               {commentData.length > 0 && (
-                <Comment
+                <Comments
                   blogData={blogData}
                   commentData={commentData}
                   userId={user.uid}

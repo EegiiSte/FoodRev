@@ -1,17 +1,15 @@
+import { doc, updateDoc } from "firebase/firestore";
 import React, { useState } from "react";
-import { updateDoc, doc } from "firebase/firestore";
-import { commentCollection } from "../../../firebase/myFirebase";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const LikeCounter = (props) => {
-  const { comment } = props;
+  const { comment, collection, id } = props;
   const [loading, setLoading] = useState(false);
 
-  // console.log(comment);
   const handleLikeComment = async () => {
     setLoading(true);
-    await updateDoc(doc(commentCollection, comment.commentId), {
+    await updateDoc(doc(collection, id), {
       ...comment,
       like: comment.like + 1,
       dislike: comment.dislike === 0 ? 0 : comment.dislike - 1,

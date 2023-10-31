@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import Header from "../../components/Header";
-
 import Card from "../../components/Card";
 import ModalCreateNewBlog from "./ModalCreateNewBlog";
 import { getDocs, onSnapshot } from "firebase/firestore";

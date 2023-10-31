@@ -1,15 +1,14 @@
-import React, { useState } from "react";
-
-import { ToastContainer, toast } from "react-toastify";
+import React from "react";
+import { deleteDoc, doc } from "firebase/firestore";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import {
   commentCollection,
   replyCollection,
 } from "../../../firebase/myFirebase";
+import Like from "../../../icons/Like";
 import DislikeCounter from "../comment/Dislike-Counter";
 import LikeCounter from "../comment/Like-Counter";
-import Like from "../../../icons/Like";
-import { deleteDoc, doc } from "firebase/firestore";
 
 const CommentReply = (props) => {
   const { user, comment, replyCommentData } = props;
@@ -114,7 +113,12 @@ const CommentReply = (props) => {
                           }}
                         >
                           <Like />
-                          <LikeCounter comment={comment} />
+                          <LikeCounter
+                            comment={replyComment}
+                            key={replyComment.replyCommentId}
+                            collection={replyCollection}
+                            id={replyComment.replyCommentId}
+                          />
                         </div>
                         <div
                           style={{
@@ -123,7 +127,12 @@ const CommentReply = (props) => {
                             gap: "10px",
                           }}
                         >
-                          <DislikeCounter comment={comment} />
+                          <DislikeCounter
+                            comment={replyComment}
+                            key={replyComment.replyCommentId}
+                            collection={replyCollection}
+                            id={replyComment.replyCommentId}
+                          />
                         </div>
                       </div>
 
