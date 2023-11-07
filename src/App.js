@@ -15,28 +15,10 @@ import Product from "./Pages/product/Product";
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useUserContext } from "./context/UserContext";
 
 const App = () => {
-  const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
-  const [user, setUser] = useState(false);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const getUser = myAuthentication.onAuthStateChanged((user) => {
-      // console.log("useruseEffect working");
-      // console.log("user");
-      if (user) {
-        setIsUserLoggedIn(true);
-
-        setUser(user);
-      } else {
-        setIsUserLoggedIn(false);
-        setUser(false);
-      }
-      setLoading(false);
-    });
-    return () => getUser();
-  }, []);
+  const { user, isUserLoggedIn, loading } = useUserContext();
 
   return (
     <div>
@@ -44,8 +26,11 @@ const App = () => {
       <BrowserRouter>
         {!loading && isUserLoggedIn && (
           <Routes>
-            <Route path="/" element={<HomePage user={user} />} />
-            <Route path="/products" element={<ProductsPage user={user} />} />
+            <Route
+              path="/"
+              element={<HomePage user={user} isUserLoggedIn={isUserLoggedIn} />}
+            />
+            <Route path="/products" element={<ProductsPage />} />
             <Route path="/products/:id" element={<Product user={user} />} />
             <Route path="/contacts" element={<ContactsPage user={user} />} />
             <Route path="/services" element={<ServicesPage user={user} />} />
@@ -55,7 +40,15 @@ const App = () => {
         {!loading && !isUserLoggedIn && (
           <Routes>
             <Route path="/sign-up" element={<SignUp user={user} />} />
-            <Route path="/" element={<SignIn user={user} />} />
+            <Route
+              path="/sign-in"
+              element={<SignIn user={user} isUserLoggedIn={isUserLoggedIn} />}
+            />
+            <Route
+              path="/"
+              element={<HomePage user={user} isUserLoggedIn={isUserLoggedIn} />}
+              // element={<SignIn user={user} isUserLoggedIn={isUserLoggedIn} />}
+            />
           </Routes>
         )}
       </BrowserRouter>

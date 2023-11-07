@@ -1,34 +1,62 @@
 import {
   addDoc,
-  getDocs,
+  deleteDoc,
+  doc,
   onSnapshot,
   serverTimestamp,
-  doc,
-  deleteDoc,
+  updateDoc,
 } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
-import { blogsCollection, commentCollection } from "../../firebase/myFirebase";
-import Header from "../../components/Header";
-import Comments from "./comment/Comments";
-import EditProduct from "./EditProduct";
-import { ToastContainer, toast } from "react-toastify";
+import { useNavigate, useParams } from "react-router-dom";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Footer from "../../components/Footer";
+import Header from "../../components/Header/Header";
+import { blogsCollection, commentCollection } from "../../firebase/myFirebase";
+import Comments from "./comment/Comments";
+import EditProduct from "./EditProduct";
+import { Rate } from "antd";
+import { useUserContext } from "../../context/UserContext";
 
 function Product(props) {
-  const { user } = props;
+  const {} = props;
+  const { user } = useUserContext();
   const { id } = useParams();
   const selectedBlogId = id;
   const navigate = useNavigate();
 
   const [blogData, setBlogData] = useState({});
+  console.log(blogData.stars);
   const [commentData, setCommentData] = useState([]);
 
+  const [starValue, setStarValue] = useState(blogData?.stars);
+  console.log(blogData);
   const [loading, setLoading] = useState(false);
   const [inputValue, setInputValue] = useState();
   const [openEditModal, setOpenEditModal] = useState(false);
   const [selectedBlog, setSelectedBlog] = useState({});
+
+  // console.log(selectedBlog);
+  console.log(starValue);
+  const desc = ["terrible", "bad", "normal", "good", "wonderful"];
+
+  const updateStarValue = async () => {
+    await updateDoc(doc(blogsCollection, selectedBlog.blogId), {
+      ...selectedBlog,
+      stars: starValue,
+    })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const handleSelectStarRate = async (value) => {
+    setStarValue(value);
+    updateStarValue();
+  };
 
   // console.log(commentData);
 
@@ -85,7 +113,7 @@ function Product(props) {
       });
     };
     return () => getBlogPageData();
-  }, [selectedBlogId]);
+  }, [selectedBlogId, starValue]);
 
   const handleCommentButton = async () => {
     await addDoc(commentCollection, {
@@ -112,6 +140,7 @@ function Product(props) {
   const hanldeDeleteBlog = async (blogId) => {
     await deleteDoc(doc(blogsCollection, blogId))
       .then(async (res) => {
+        console.log(res);
         await commentData.map((comment) => {
           deleteDoc(doc(commentCollection, comment.commentId))
             .then((res) => {})
@@ -141,95 +170,88 @@ function Product(props) {
   };
 
   return (
-    <div>
+    <div className="d-flex just-c flex-direction-c">
       {loading && <div>Loading ...</div>}
       {!loading && blogData === undefined && <div>Blog not Found</div>}
       {!loading && blogData !== undefined && (
-        <div
-          style={{
-            width: "100vw",
-            // height: "100vh",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "start",
-            flexDirection: "column",
-          }}
-        >
+        <div className="width-100vw d-flex just-c flex-direction-c">
           <Header user={props.user} />
           <div
+            className="width-100vw d-flex align-c just-start flex-direction-c"
             style={{
-              width: "100vw",
-              // height: "100vh",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "start",
-              flexDirection: "column",
               marginTop: "3%",
             }}
           >
-            <div>
-              {blogData.userId === user.uid && (
-                <div
-                  style={{
-                    display: "flex",
-                    flexDirection: "row",
-                    gap: "20px",
-                    alignItems: "center",
-                    marginBottom: "10px",
-                  }}
-                >
-                  <button
+            <div className="d-flex flex-direction-row  gap-20">
+              <div></div>
+              <div>
+                {blogData.userId === user.uid && (
+                  <div
+                    className="d-flex flex-direction-row gap-20 align-c "
                     style={{
-                      cursor: "pointer",
-                      width: "50px",
-                      height: "20px",
-                    }}
-                    onClick={(e) => {
-                      handleEditBlogButton(blogData);
+                      marginBottom: "10px",
                     }}
                   >
-                    Edit
-                  </button>
-                  <button
-                    style={{
-                      cursor: "pointer",
-                      width: "50px",
-                      height: "20px",
-                    }}
-                    onClick={(e) => {
-                      hanldeDeleteBlog(blogData.blogId);
-                    }}
-                  >
-                    Delete
-                  </button>
-                </div>
-              )}
+                    <button
+                      style={{
+                        cursor: "pointer",
+                        width: "50px",
+                        height: "20px",
+                      }}
+                      onClick={(e) => {
+                        handleEditBlogButton(blogData);
+                      }}
+                    >
+                      Edit
+                    </button>
+                    <button
+                      style={{
+                        cursor: "pointer",
+                        width: "50px",
+                        height: "20px",
+                      }}
+                      onClick={(e) => {
+                        hanldeDeleteBlog(blogData.blogId);
+                      }}
+                    >
+                      Delete
+                    </button>
+                  </div>
+                )}
+              </div>
+              <div>
+                <span>
+                  <Rate
+                    tooltips={desc}
+                    // onChange={setStarValue}
+                    onChange={handleSelectStarRate}
+                    value={starValue}
+                  />
+                  {starValue ? (
+                    <span className="ant-rate-text">{desc[starValue - 1]}</span>
+                  ) : (
+                    ""
+                  )}
+                </span>
+              </div>
             </div>
+
             <div
+              className="box-shadow-gray borderR10"
               style={{
                 width: "700px",
-                // height: "50vh",
                 cursor: "pointer",
                 backgroundColor: "white",
-                boxShadow: "0px 0px 10px gray",
-                // border: "1px solid black",
-                borderRadius: "10px",
               }}
             >
               <div
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "start",
-                  alignItems: "center",
-                  padding: "10px",
-                }}
+                className="d-flex flex-direction-c just-c align-c padding10
+              position-rel"
               >
                 <div
+                  className="d-flex just-c flex-direction-c"
                   style={{
                     height: "30px",
-                    display: "flex",
-                    justifyContent: "center",
                   }}
                 >
                   <div
@@ -242,46 +264,36 @@ function Product(props) {
                   </div>
                   <div
                     style={{
-                      width: "300%",
-                      borderBottom: "2px solid red",
+                      width: "100%",
+                      borderBottom: "2px solid gray",
                     }}
                   ></div>
                 </div>
 
                 <div
                   style={{
-                    height: "160px",
+                    // minHeight: "160px",
+                    fontSize: "10px",
+                    marginTop: "10px",
+
+                    textAlign: "center",
                   }}
                 >
-                  <div
-                    style={{
-                      fontSize: "10px",
-                      marginTop: "10px",
-
-                      textAlign: "center",
-                    }}
-                  >
-                    {blogData.text}
-                  </div>
+                  {blogData.text}
+                </div>
+                <div className="borderR10 overFlowHidden margin20 " style={{}}>
+                  <img
+                    src={blogData.blogImage}
+                    alt={"blodDataImage"}
+                    width="350px"
+                    height="150px"
+                  />
                 </div>
 
-                <div
-                  style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    justifyContent: "front",
-                    alignItems: "bottom",
-                  }}
-                >
+                <div className="d-flex flex-direction-c just-start align-end">
                   <div
+                    className="d-flex flex-direction-row align-c gap-10 "
                     style={{
-                      display: "flex",
-                      flexDirection: "row",
-                      alignItems: "center",
-                      //   marginTop: "20px",
-                      //   padding: "10px",
-
-                      gap: "10px",
                       height: "20px",
                     }}
                   >
@@ -299,11 +311,8 @@ function Product(props) {
               </div>
             </div>
             <div
+              className="d-flex flex-direction-row gap-20 "
               style={{
-                display: "flex",
-                flexDirection: "row",
-                gap: "20px",
-
                 marginTop: "30px",
               }}
             >
@@ -331,15 +340,7 @@ function Product(props) {
                 Comment
               </button>
             </div>
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                textAlign: "center",
-                flexDirection: "column",
-              }}
-            >
+            <div className="d-flex align-c just-c flex-direction-c text-align-c">
               {commentData.length > 0 && (
                 <Comments
                   blogData={blogData}
@@ -357,7 +358,7 @@ function Product(props) {
         selectedBlog={selectedBlog}
         closeEditModal={closeEditModal}
       />
-      <ToastContainer />
+
       <div
         style={{
           marginTop: "10px",

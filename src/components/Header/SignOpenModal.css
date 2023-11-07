@@ -1,0 +1,24 @@
+.toChangeModalBox {
+  width: 500px;
+  height: 600px;
+  background-color: white;
+  flex-direction: column;
+}
+.signInSignUpBox {
+  margin-top: 10px;
+  flex-direction: column;
+}
+
+.cancelButtonBox {
+  margin-top: 10px;
+  flex-direction: column;
+}
+
+.cancelBotton {
+  width: 311px;
+  height: 30px;
+  border: 2px solid white;
+  background-color: pink;
+  margin-bottom: 10px;
+  cursor: pointer;
+}

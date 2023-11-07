@@ -60,40 +60,19 @@ function EditCommentModal(props) {
 
   return (
     <Modal isOpen={openEditModal} style={customStyles}>
-      <div
-        style={{
-          marginTop: "10px",
-          //   padding: "10px",
-          //   width: "540px",
-          //   height: "100px",
-          borderRadius: "5px",
-          boxShadow: "0px 0px 10px gray",
-        }}
-      >
+      <div className="marginTop10 borderR5 box-shadow-gray">
         <textarea
+          className="borderR5 d-flex align-start"
           style={{
-            borderRadius: "5px",
             width: "520px",
-            // height: "100px",
             overflow: "scroll",
-            display: "flex",
-            alignItems: "start",
           }}
           rows={5}
           value={inputValue}
           onChange={handleInput}
         ></textarea>
       </div>
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          gap: "20px",
-          marginTop: "10px",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      >
+      <div className="d-flex flex-direction-row gap-20 marginTop10 align-c just-c">
         <button
           style={{
             cursor: "pointer",

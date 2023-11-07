@@ -39,10 +39,10 @@
   align-items: center;
 }
 .header {
-  color: white;
+  color: black;
 }
 .signbox {
-  color: white;
+  color: gray;
   /* margin-top: 20px; */
 }
 
@@ -103,11 +103,6 @@
   border: 1px solid lightgray;
   border-radius: 5px;
 }
-#showPasswordBox {
-  display: flex;
-  align-items: center;
-  justify-content: end;
-}
 
 .signButtonBox {
   display: flex;
@@ -121,10 +116,22 @@
   border-radius: 5px;
   color: white;
 }
-.checkBox {
+#showPasswordBox {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  width: 50%;
+  padding-right: 10px;
+}
+.CheckBoxContainer {
   display: flex;
   flex-direction: row;
-  margin: 10px;
+}
+.checkBox {
+  width: 50%;
+  display: flex;
+  flex-direction: row;
+  /* margin: 10px; */
 }
 .checkBoxButton {
   /* height: 10px;
@@ -136,7 +143,7 @@
   color: rgb(142, 134, 134);
 }
 .footerBox {
-  /* height: 10px; */
+  margin-top: 10px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -148,8 +155,6 @@
   align-items: center;
   color: lightgray;
   font-size: 10px;
-  margin-top: 5px;
-  margin-bottom: 10px;
 }
 .orLine {
   height: 0px;
@@ -159,17 +164,15 @@
 
 .signToBox {
   display: flex;
+  gap: 40px;
 }
 .signToButton {
   height: 20px;
   width: 130px;
-  margin: 15px;
+  gap: 10px;
   font-size: 12px;
   border-radius: 5px;
   border: lightgray;
-  /* display: flex;
-  flex-direction: column;
-  flex-wrap: wrap; */
 }
 .signButtonApple {
 }

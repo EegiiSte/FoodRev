@@ -1,13 +1,15 @@
+import { onSnapshot } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
-import Header from "../../components/Header";
-import Card from "../../components/Card";
-import ModalCreateNewBlog from "./ModalCreateNewBlog";
-import { getDocs, onSnapshot } from "firebase/firestore";
-import { blogsCollection } from "../../firebase/myFirebase";
 import { ToastContainer } from "react-toastify";
+import Card from "../../components/Card";
 import Footer from "../../components/Footer";
+import Header from "../../components/Header/Header";
+import { useUserContext } from "../../context/UserContext";
+import { blogsCollection } from "../../firebase/myFirebase";
+import ModalCreateNewBlog from "./ModalCreateNewBlog";
 
 function ProductPage(props) {
+  const { user, isUserLoggedIn } = useUserContext();
   const [searchValue, setSearchValue] = useState("");
   const [filteredArray, setFilteredArray] = useState([]);
 
@@ -62,46 +64,18 @@ function ProductPage(props) {
     >
       <section>
         <div
+          className="width-100vw height-100vh backgroundSize-c d-flex 
+        align-c just-c flex-direction-c"
           style={{
-            width: "100vw",
-            height: "100vh",
             backgroundImage: "#F5F6FA",
-            backgroundSize: "cover",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            flexDirection: "column",
           }}
         >
-          <Header user={props.user} />
-          <div
-            style={
-              {
-                // height: "100vh",
-                // width: "1080px",
-              }
-            }
-          ></div>
-          <div
-            style={{
-              height: "100vh",
-              width: "1080px",
-              display: "flex",
-              marginTop: "10px",
-              flexDirection: "column",
-            }}
-          >
+          <Header user={user} />
+          <div className="height-100vh width-1080 d-flex marginTop10 flex-direction-c">
             <div
+              className="d-flex just-c align-c width-1080 gap-10"
               style={{
-                border: "1px solid brue",
-                // backgroundColor: "red",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-
-                width: "1080 ",
                 height: "100px",
-                gap: "10px",
               }}
             >
               <button
@@ -119,8 +93,6 @@ function ProductPage(props) {
                 value={searchValue}
                 placeholder="Search by name"
                 style={{
-                  // border: "1px solid brue",
-
                   height: "40px",
                   width: "500px",
                 }}
@@ -128,8 +100,6 @@ function ProductPage(props) {
               ></input>
               <button
                 style={{
-                  // border: "1px solid brue",
-
                   height: "46px",
                   width: "100px ",
                 }}
@@ -138,10 +108,8 @@ function ProductPage(props) {
               </button>
             </div>
             <div
+              className="width-1080"
               style={{
-                // border: "1px solid gray",
-                // backgroundColor: "green",
-                width: "1080px",
                 height: "450px",
               }}
             >
@@ -149,17 +117,9 @@ function ProductPage(props) {
               {!loading && data.length === 0 && <div>There is not blogs</div>}
               {!loading && data.length > 0 && (
                 <div
+                  className="d-flex align-start width-1080 gap-10 padding10"
                   style={{
-                    // border: "1px solid brown",
-                    // backgroundColor: "pink",
-                    width: "1080px",
                     height: "738px",
-                    // margin: "10px",
-                    padding: "10px",
-                    gap: "20px",
-                    display: "flex",
-                    justifyContent: "start",
-                    alignItems: "start",
                     flexWrap: "wrap",
                     overflow: "scroll",
                     overflowBlock: "hidden",
@@ -173,7 +133,7 @@ function ProductPage(props) {
             </div>
           </div>
           <ModalCreateNewBlog
-            user={props.user}
+            user={user}
             openModal={openModal}
             closeModal={closeModal}
           />

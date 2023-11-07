@@ -25,7 +25,7 @@ const CommentEditAndDelete = (props) => {
   };
 
   return (
-    <div className="  editDeleteButtonBox displayAlinCenter">
+    <div className="  editDeleteButtonBox d-flex align-c">
       <button
         className=" commentButton"
         onClick={(e) => {

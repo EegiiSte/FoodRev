@@ -1,0 +1,139 @@
+.d-flex {
+  display: flex;
+}
+.just-start {
+  justify-content: start;
+}
+.just-c {
+  justify-content: center;
+}
+.just-end {
+  justify-content: end;
+}
+.just-space-between {
+  justify-content: space-between;
+}
+.align-start {
+  align-items: start;
+}
+.align-c {
+  align-items: center;
+}
+.align-end {
+  align-items: end;
+}
+.text-align-c {
+  text-align: center;
+}
+.position-rel {
+  position: "relative";
+}
+.position-abs {
+  position: "absolute";
+}
+
+.flex-direction-row {
+  flex-direction: row;
+}
+.flex-direction-c {
+  flex-direction: column;
+}
+
+.backgroundSize-c {
+  background-size: cover;
+}
+
+.width-100pr {
+  width: 100%;
+}
+.width-100vw {
+  width: 100vw;
+}
+.width-1080 {
+  width: 1080px;
+}
+.height-100pr {
+  height: 100%;
+}
+.height-100vh {
+  height: 100vh;
+}
+
+.borderRed {
+  border: 1px solid red;
+}
+.borderBlue {
+  border: 1px solid blue;
+}
+.borderBlack {
+  border: 1px solid black;
+}
+.borderR5 {
+  border-radius: 5px;
+}
+
+.borderR7 {
+  border-radius: 7px;
+}
+.borderR10 {
+  border-radius: 10px;
+}
+.borderR50pr {
+  border-radius: 50%;
+}
+.box-shadow-gray {
+  box-shadow: 0px 0px 10px gray;
+}
+
+.gap-5 {
+  gap: 5px;
+}
+.gap-10 {
+  gap: 10px;
+}
+.gap-15 {
+  gap: 15px;
+}
+.gap-20 {
+  gap: 20px;
+}
+.gap-25 {
+  gap: 25px;
+}
+.gap-30 {
+  gap: 30px;
+}
+.padding10 {
+  padding: 10px;
+}
+.paddingTop10 {
+  padding-top: 10px;
+}
+.marginTop10 {
+  margin-top: 10px;
+}
+.margin20 {
+  margin: 20px;
+}
+.margin10 {
+  margin: 10px;
+}
+.commentButton {
+  cursor: pointer;
+  width: 50px;
+  height: 20px;
+}
+.overFlowHidden {
+  overflow: hidden;
+}
+/* ---------------------------------------------------------------- */
+
+.buttonNextPrev {
+  cursor: pointer;
+  width: 100px;
+  height: 50px;
+  font-size: 20px;
+}
+.cursorPointer {
+  cursor: pointer;
+}

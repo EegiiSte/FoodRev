@@ -37,9 +37,9 @@ const DisplayCommentReplyInput = (props) => {
       });
   };
   return (
-    <div className=" replyInputBox displayJustEndAlinCen borderR5 borderShadowGray">
+    <div className=" replyInputBox d-flex just-end align-c borderR5 borderShadowGray">
       <input
-        className=" replyInput"
+        className=" replyInput borderR5"
         onChange={handleInputReplyValue}
         placeholder="Enter reply comment"
         value={inputReplyValue}

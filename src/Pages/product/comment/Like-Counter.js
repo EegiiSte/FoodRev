@@ -4,7 +4,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const LikeCounter = (props) => {
-  const { comment, collection, id } = props;
+  const { comment, collection, id, user } = props;
   const [loading, setLoading] = useState(false);
 
   const handleLikeComment = async () => {
@@ -15,9 +15,12 @@ const LikeCounter = (props) => {
       dislike: comment.dislike === 0 ? 0 : comment.dislike - 1,
     })
       .then((res) => {
-        toast.success(`${comment.userName} clicked like on your comment !`, {
-          position: toast.POSITION.TOP_RIGHT,
-        });
+        toast.success(
+          `${user.displayName} clicked like on ${comment.userName} comment !`,
+          {
+            position: toast.POSITION.TOP_RIGHT,
+          }
+        );
         setLoading(false);
       })
       .catch((err) => {
@@ -38,8 +41,7 @@ const LikeCounter = (props) => {
       >
         Like
       </button>
-      <div type="number" style={{ width: "40px", border: "1px solid red" }}>
-        {}
+      <div type="number" style={{ width: "40px" }}>
         {comment.like}
       </div>
       <ToastContainer />

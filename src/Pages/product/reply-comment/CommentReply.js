@@ -32,17 +32,11 @@ const CommentReply = (props) => {
           replyComment.parentCommentId === comment.commentId && (
             <div
               key={{}}
+              className="borderR5 d-flex just-end flexDirection-r "
               style={{
                 marginTop: "5px",
                 padding: "5px",
                 width: "550px",
-
-                // border: "1px solid red",
-                // boxShadow: "0px 0px 10px gray",
-                borderRadius: "5px",
-                display: "flex",
-                justifyContent: "end",
-                flexDirection: "row",
               }}
             >
               <img
@@ -56,63 +50,27 @@ const CommentReply = (props) => {
                 alt=""
               />
               <div>
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "start",
-                    paddingTop: "10px",
-                  }}
-                >
+                <div className="d-flex just-start paddingTop10 ">
                   {replyComment.userName}
                 </div>
                 <div>
                   <div // endees comment boxes ehelj bna
+                    className="marginTop10 padding10 box-shadow-gray borderR5"
                     style={{
-                      marginTop: "10px",
-                      padding: "10px",
                       width: "440px",
-                      // height: "10%",
-                      // border: "1px solid blue",
-                      boxShadow: "0px 0px 10px gray",
-                      borderRadius: "5px",
                     }}
                   >
-                    <div
-                      key={index}
-                      style={{
-                        display: "flex",
-                        justifyContent: "center",
-                        alignItems: "center",
-                      }}
-                    >
+                    <div key={index} className="d-flex just-c align-c">
                       {replyComment.comment}
                     </div>
                     <div
+                      className="d-flex just-space-between align-c flex-direction-row gap-20"
                       style={{
-                        display: "flex",
-                        justifyContent: "space-between",
-                        flexDirection: "row",
-                        gap: "20px",
                         marginTop: "15px",
-                        alignItems: "center",
                       }}
                     >
-                      <div
-                        style={{
-                          display: "flex",
-                          flexDirection: "row",
-                          gap: "20px",
-                          alignItems: "center",
-                        }}
-                      >
-                        <div
-                          style={{
-                            display: "flex",
-                            flexDirection: "row",
-                            gap: "10px",
-                          }}
-                        >
-                          <Like />
+                      <div className="d-flex flex-direction-row align-c gap-10">
+                        <div>
                           <LikeCounter
                             comment={replyComment}
                             key={replyComment.replyCommentId}
@@ -137,23 +95,13 @@ const CommentReply = (props) => {
                       </div>
 
                       {replyComment.userId === user.uid && (
-                        <div
-                          style={{
-                            display: "flex",
-                            flexDirection: "row",
-                            gap: "20px",
-                            alignItems: "center",
-                          }}
-                        >
+                        <div className="d-flex flex-direction-row gap-20 align-c">
                           <button
                             style={{
                               cursor: "pointer",
                               width: "50px",
                               height: "20px",
                             }}
-                            //   onClick={(e) => {
-                            //     handelOpenEditModal(comment);
-                            //   }}
                           >
                             Edit
                           </button>
@@ -163,9 +111,6 @@ const CommentReply = (props) => {
                               width: "50px",
                               height: "20px",
                             }}
-                            // onClick={(e) => {
-                            //   hanldeDeleteReplyComment(replyComment.commentId);
-                            // }}
                           >
                             Delete
                           </button>
@@ -174,11 +119,7 @@ const CommentReply = (props) => {
                     </div>
                   </div>
                   <div // comment dotroh comment ehelj bna
-                    style={{
-                      display: "flex",
-                      justifyContent: "end",
-                      flexDirection: "column",
-                    }}
+                    className="d-flex just-c flex-direction-c"
                   ></div>
                 </div>
               </div>

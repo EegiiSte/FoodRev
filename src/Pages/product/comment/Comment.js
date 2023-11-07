@@ -49,7 +49,7 @@ const Comment = (props) => {
   const [selectedComment, setSelectedComment] = useState({});
 
   const handleReplyButton = (commentId) => {
-    setParentCommentId(commentId);
+    // setParentCommentId(commentId);
     showReply === false ? setShowReply(true) : setShowReply(false);
   };
 
@@ -61,10 +61,10 @@ const Comment = (props) => {
     <div className="commentMainBox borderR5 " key={{}}>
       <img className="userImageComment" src={comment.userImage} alt="" />
       <div>
-        <div className="userNameComment">{comment.userName}</div>
+        <div className=" userNameComment">{comment.userName}</div>
         <div>
           <div className=" commentSecondBox">
-            <div className=" commentTextBox displayJustCenAlinCen">
+            <div className=" commentTextBox d-flex just-c align-c ">
               {comment.comment}
             </div>
             <div className=" bottomButtonBox">
@@ -72,6 +72,7 @@ const Comment = (props) => {
                 <div className=" likeCountBox">
                   <Like />
                   <LikeCounter
+                    user={user}
                     key={comment.id}
                     comment={comment}
                     collection={commentCollection}
@@ -80,6 +81,7 @@ const Comment = (props) => {
                 </div>
                 <div className=" dislikeCountBox">
                   <DislikeCounter
+                    user={user}
                     key={comment.id}
                     comment={comment}
                     collection={commentCollection}

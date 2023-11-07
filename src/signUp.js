@@ -4,7 +4,7 @@ import * as yup from "yup";
 import { myAuthentication, usersCollection } from "./firebase/myFirebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { addDoc } from "firebase/firestore";
-import Header from "./components/Header";
+import Header from "./components/Header/Header";
 const validateForm = yup.object().shape({
   name: yup
     .string()
@@ -147,9 +147,9 @@ function SignUp(props) {
     }
   };
   return (
-    <div className="body">
+    <div className="body ">
       <Header user={props.user} />
-      <div className="mainBox">
+      <div className="mainBox borderRed">
         <div className="headBox">
           <h1 className="header">Get Started Now</h1>
         </div>

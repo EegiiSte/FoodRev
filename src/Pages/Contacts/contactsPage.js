@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 function ContactsPage(props) {
   return (
@@ -21,20 +21,21 @@ function ContactsPage(props) {
             height: "30px",
           }}
           type="text"
-        ></input>
+        />
         <input
           placeholder="Email"
           style={{ width: "300px", height: "30px" }}
           type="text"
-        ></input>
-        <input
+        />
+        <textarea
+          rows={10}
           placeholder="Message"
           style={{
             width: "300px",
             height: "200px",
           }}
           type="text"
-        ></input>
+        ></textarea>
       </div>
     </div>
   );

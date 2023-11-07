@@ -2,6 +2,7 @@ import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { getAuth } from "firebase/auth";
 import { getFirestore, collection } from "firebase/firestore";
+import { getStorage } from "firebase/storage";
 const firebaseConfig = {
   apiKey: "AIzaSyD_Gj2LJjRLEt2ObfwzdYlD6nNNhpECwaM",
   authDomain: "react-9cc19.firebaseapp.com",
@@ -22,6 +23,7 @@ const usersCollection = collection(database, "users");
 const blogsCollection = collection(database, "blogs");
 const commentCollection = collection(database, "comments");
 const replyCollection = collection(database, "reply");
+const storage = getStorage();
 
 export {
   myAuthentication,
@@ -29,4 +31,5 @@ export {
   blogsCollection,
   commentCollection,
   replyCollection,
+  storage,
 };

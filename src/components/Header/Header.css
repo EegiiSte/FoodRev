@@ -1,0 +1,53 @@
+.headerMainBox {
+  width: 1080px;
+  background-color: transparent;
+  height: 40px;
+}
+.headerSecondBox {
+  margin-top: 10px;
+  width: 1080px;
+  background-color: transparent;
+  display: flex;
+  justify-content: space-between;
+}
+.navbarBox {
+  width: 60%;
+  display: flex;
+  gap: 5px;
+  justify-content: space-between;
+}
+
+.helloBox {
+  padding-left: 20px;
+  font-size: 14px;
+}
+.signInModalMainbox {
+  width: 40%;
+  justify-content: space-between;
+}
+.contactModalMainBox {
+  width: 500px;
+  height: 500px;
+  background-color: white;
+  flex-direction: column;
+}
+.sendCancelButtonBox {
+  margin-top: 10px;
+  flex-direction: column;
+}
+.sendButton {
+  width: 311px;
+  height: 30px;
+  border: 2px solid white;
+  border-radius: 5px;
+  background-color: pink;
+  margin-bottom: 10px;
+}
+.cancelButton {
+  width: 311px;
+  height: 30px;
+  border: 2px solid white;
+  border-radius: 5px;
+  background-color: pink;
+  margin-bottom: 10px;
+}

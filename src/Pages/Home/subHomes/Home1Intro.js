@@ -1,28 +1,22 @@
 import React from "react";
 
 import HomeImage from "../../../images/home-image.jpg";
-import Header from "../../../components/Header";
+import Header from "../../../components/Header/Header";
 function Home1Intro(props) {
   return (
     <div
+      className="backgroundSize-c width-100pr height-100vh
+     d-flex flex-direction-c just-c align-c"
       style={{
         backgroundImage: `url(${HomeImage})`,
-        backgroundSize: "cover",
-        width: "100%",
-        height: "100vh",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center",
       }}
     >
-      <Header user={props.user} darkLogo={true} />
-      <div
-        style={{
-          width: "1080px",
-          height: "100%",
-        }}
-      >
+      <Header
+        user={props.user}
+        darkLogo={true}
+        isUserLoggedIn={props.isUserLoggedIn}
+      />
+      <div className="width-1080 height-100pr position-rel">
         <div
           style={{
             fontSize: "48px",

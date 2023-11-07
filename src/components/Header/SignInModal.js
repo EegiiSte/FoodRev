@@ -6,11 +6,11 @@ import {
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import * as yup from "yup";
-import Header from "./components/Header/Header";
-import { myAuthentication } from "./firebase/myFirebase";
+
+import { myAuthentication } from "../../firebase/myFirebase.js";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import "./Pages/product/comment/comment.css";
+import "../../Pages/product/comment/comment.css";
 const validateForm = yup.object().shape({
   email: yup.string().email("Invalid email address").required(),
   password: yup
@@ -20,12 +20,12 @@ const validateForm = yup.object().shape({
     .required(),
 });
 
-function SignIn(props) {
-  const { user, isUserLoggedIn } = props;
+function SignInModal(props) {
+  const { user } = props;
   const navigate = useNavigate();
-  const navigateToSignUpPage = () => {
-    navigate("/sign-up");
-  };
+  //   const navigateToSignUpPage = () => {
+  //     navigate("/sign-up");
+  //   };
 
   const [formValues, setFormValues] = useState({
     email: "",
@@ -76,20 +76,20 @@ function SignIn(props) {
   const handleSignIn = async (e) => {
     if (
       formValues.email === "" ||
-      formValues.password === "" ||
-      formValues.checkbox === false
+      formValues.password === ""
+      //   formValues.checkbox === false
     ) {
       setFormErrors({
         ...formErrors,
         required: "All inputs must be required",
-        confirmPassword: "",
+        // confirmPassword: "",
       });
+    } else if (formValues.checkbox === false) {
+      setFormValues({ ...formValues, email: "", password: "" });
     } else if (
-      // checks if there is any errors
-
       formErrors.email !== "" ||
       formErrors.password !== "" ||
-      formErrors.checkbox !== ""
+      formErrors.checkbox === false
     ) {
       setFormErrors({ ...formErrors, required: "All error must be cleared" });
     } else {
@@ -101,7 +101,7 @@ function SignIn(props) {
       )
         .then((res) => {
           toast.success(
-            `Hello ${props.user.userName} Your Google Sign in successfull !`,
+            `Hello ${props.user.userName} Your Sign in successfull !`,
             {
               position: toast.POSITION.TOP_RIGHT,
             }
@@ -109,7 +109,11 @@ function SignIn(props) {
           navigate("/");
         })
         .catch((err) => {
-          setFormErrors({ ...formErrors, required: err.message });
+          setFormErrors({
+            ...formErrors,
+            required: "Email or password incorect",
+          });
+          setFormValues({ ...formValues, password: "" });
         });
     }
   };
@@ -132,50 +136,35 @@ function SignIn(props) {
   };
 
   return (
-    <div className="body ">
-      <div className="mainBox ">
-        <Header user={props.user} darkLogo={false} />
-        <div className="headBox ">
-          <h1 className="header">Welcome back!</h1>
-          <h1 className="secondHeader">
-            Enter your Cre... to access your account
-          </h1>
+    <div>
+      <div className="inputBox">
+        <div className="signbox">
+          <h1 className="lineName">Email Address</h1>
+          <input
+            className="inputLineEmail"
+            placeholder="Enter Email"
+            type="email"
+            name="email"
+            value={formValues.email}
+            onChange={HandleIput}
+            style={{ border: `2px solid ${colorErrors.email}` }}
+          ></input>
+          <h1 id="notificationEmail">{formErrors.email}</h1>
         </div>
-        <div className="inputBox">
-          <div className="signbox">
-            <h1 className="lineName">Email Address</h1>
-            <input
-              className="inputLineEmail"
-              placeholder="Enter Email"
-              type="email"
-              name="email"
-              value={formValues.email}
-              onChange={HandleIput}
-              style={{ border: `2px solid ${colorErrors.email}` }}
-            ></input>
-            <h1 id="notificationEmail">{formErrors.email}</h1>
-          </div>
-          <div className="signbox">
-            <h1 className="lineName">Password</h1>
-            <input
-              className="inputLinePassword"
-              placeholder="Enter Password"
-              type={showPassword ? "text" : "password"}
-              name="password"
-              value={formValues.password}
-              onChange={HandleIput}
-              style={{ border: `2px solid ${colorErrors.password}` }}
-            ></input>
-            <h1 id="notificationPassword">{formErrors.password}</h1>
-          </div>
-          <div className="notiwords" id="showPasswordBox">
-            Show Password
-            <input
-              type="checkbox"
-              checked={showPassword}
-              onClick={handleShowPassword}
-            />
-          </div>
+        <div className="signbox">
+          <h1 className="lineName">Password</h1>
+          <input
+            className="inputLinePassword"
+            placeholder="Enter Password"
+            type={showPassword ? "text" : "password"}
+            name="password"
+            value={formValues.password}
+            onChange={HandleIput}
+            style={{ border: `2px solid ${colorErrors.password}` }}
+          ></input>
+          <h1 id="notificationPassword">{formErrors.password}</h1>
+        </div>
+        <div className="CheckBoxContainer">
           <div className="checkBox">
             <input
               type="checkbox"
@@ -185,45 +174,43 @@ function SignIn(props) {
             ></input>
             <h1 className="notiwords">Remember email</h1>
           </div>
-          <div>
-            <h1
-              id="notificationCheckBox"
-              className="notiwords"
-              style={{ borderBlockColor: colorErrors.checkbox }}
-            >
-              {formErrors.checkbox}
-            </h1>
-          </div>
-          <div className="signButtonBox">
-            <button className="SignButton" onClick={handleSignIn}>
-              Sign In
-            </button>
+          <div className="notiwords" id="showPasswordBox">
+            Show Password
+            <input
+              type="checkbox"
+              checked={showPassword}
+              onClick={handleShowPassword}
+            />
           </div>
         </div>
-        <div className="footerBox, notiwords, orLineBox">
-          <div className="orLine"></div>
-          <div>or</div>
-          <div className="orLine"></div>
+        <div></div>
+        <div>
+          <h1
+            id="notificationCheckBox"
+            className="notiwords"
+            style={{ borderBlockColor: colorErrors.checkbox }}
+          >
+            {formErrors.checkbox}
+          </h1>
         </div>
-        <div className="footerBox">
-          <div className="signToBox">
-            <button className="signToButton" onClick={handleSignInWithGoogle}>
-              Sign in with Google
-            </button>
-            <button className="signToButton">Sign in with Apple</button>
-          </div>
-          <div className="footerBottomBox">
-            <h6 className="notiwords"> Don't have an account</h6>
-            <button onClick={navigateToSignUpPage} className="footerToSign">
-              Sign up
-            </button>
-          </div>
+        <div className="signButtonBox">
+          <button className="SignButton" onClick={handleSignIn}>
+            Sign In
+          </button>
+          <h6 id="notificationRequiredBox">{formErrors.required}</h6>
         </div>
       </div>
-      <div className="mainSecondBox"></div>
-      <ToastContainer />
+
+      <div className="footerBox">
+        <div className="signToBox">
+          <button className="signToButton" onClick={handleSignInWithGoogle}>
+            Sign in with Google
+          </button>
+          <button className="signToButton">Sign in with Apple</button>
+        </div>
+      </div>
     </div>
   );
 }
 
-export default SignIn;
+export default SignInModal;

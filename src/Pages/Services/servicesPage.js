@@ -1,9 +1,10 @@
 import React from "react";
-import Header from "../../components/Header";
+import Header from "../../components/Header/Header";
 
 function ServicesPage(props) {
   return (
     <div
+      className="d-flex just-start flex-direction-c align-c"
       style={{
         backgroundImage: "#F5F6FA",
         backgroundSize: "cover",

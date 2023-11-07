@@ -1,6 +1,5 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import StarIcon from "../icons/StarIcon";
 const convertNumberToArray = (number) => {
   const result = [];
   for (let i = 0; i < number; i++) {
@@ -20,6 +19,7 @@ function Card(props) {
 
   return (
     <div
+      className="box-shadow-gray"
       onClick={(e) => {
         handleProductClick(blogId);
       }}
@@ -28,22 +28,21 @@ function Card(props) {
         cursor: "pointer",
         backgroundColor: "white",
         height: "230px",
-        boxShadow: "0px 0px 10px gray",
+
         borderRadius: "10px",
       }}
     >
       <div
+        className=" d-flex just-c align-c"
         style={{
-          display: "flex",
           flexDirection: "column",
-          justifyContent: "start",
-          alignItems: "center",
           padding: "10px",
         }}
       >
         <div
           style={{
             height: "30px",
+            overflow: "hidden",
           }}
         >
           <div
@@ -59,7 +58,6 @@ function Card(props) {
         <div
           style={{
             height: "130px",
-
             padding: "10px",
             overflow: "hidden",
             marginBottom: "5px",
@@ -69,7 +67,6 @@ function Card(props) {
             style={{
               fontSize: "10px",
               marginTop: "10px",
-
               textAlign: "center",
             }}
           >
@@ -86,13 +83,9 @@ function Card(props) {
           }}
         >
           <div
+            className="d-flex align-c flexDirection-r"
             style={{
-              display: "flex",
-              flexDirection: "row",
-              alignItems: "center",
               marginTop: "5px",
-              //   padding: "10px",
-
               gap: "10px",
               height: "20px",
             }}
@@ -115,10 +108,3 @@ function Card(props) {
 }
 
 export default Card;
-// <div style={{ height: "20px" }}>
-//   <div>
-//     {convertNumberToArray(stars).map((num) => {
-//       return <StarIcon />;
-//     })}
-//   </div>
-// </div>;

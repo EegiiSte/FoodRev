@@ -4,27 +4,17 @@ import HomeImageMeeting from "../../../images/Home-Meeting.png";
 function Home2Teamwork() {
   return (
     <div
-      style={{
-        width: "100%",
-        height: "100vh",
-        display: "flex",
-        justifyContent: "center",
-        position: "relative",
-      }}
+    className="width-100pr height-100vh d-flex just-c position-rel"
     >
       <div
+      className="width-100pr d-flex position-rel just-space-between "
         style={{
-          width: "100%",
           backgroundColor: "#F5F6FA",
-          position: "relative",
-          display: "flex",
-          justifyContent: "space-between",
         }}
       >
         <div
+        className="position-abs"
           style={{
-            position: "absolute",
-
             paddingTop: "0",
             width: "465px",
             height: "363px",
@@ -68,8 +58,8 @@ function Home2Teamwork() {
           </p>
         </div>
         <div
+        className="position-abs"
           style={{
-            position: "absolute",
             top: "30px",
             right: "0",
             paddingTop: "0",

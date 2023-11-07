@@ -3,6 +3,7 @@ import testimonialData from "./TestimonialData";
 import StartIcon from "../../../icons/StarIcon";
 import { getDocs } from "firebase/firestore";
 import { blogsCollection } from "../../..//firebase/myFirebase";
+import "../../product/comment/comment.css";
 
 const convertNumberToArray = (number) => {
   const result = [];
@@ -12,19 +13,23 @@ const convertNumberToArray = (number) => {
   return result;
 };
 
-function Home5Testimonial() {
+function Home5Testimonial(props) {
+  const { user, isUserLoggedIn } = props;
   const [data, setData] = useState([]);
   // console.log(data);
+
   useEffect(() => {
     const getData = async () => {
-      const firebaseCollectionInfo = await getDocs(blogsCollection);
-      const firebaseDocData = firebaseCollectionInfo.docs.map((doc) => {
-        return doc.data();
-      });
-      setData(firebaseDocData);
+      if (isUserLoggedIn) {
+        const firebaseCollectionInfo = await getDocs(blogsCollection);
+        const firebaseDocData = firebaseCollectionInfo.docs.map((doc) => {
+          return doc.data();
+        });
+        setData(firebaseDocData);
+      }
     };
     getData();
-  }, []);
+  }, [isUserLoggedIn]);
 
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -40,6 +45,7 @@ function Home5Testimonial() {
 
   return (
     <div
+      className=""
       style={{
         width: "100vw",
         display: "flex",
@@ -48,128 +54,167 @@ function Home5Testimonial() {
         backgroundColor: "#F5F6FA",
       }}
     >
-      <div
-        style={{
-          width: "1080px",
-          height: "100%",
-          // backgroundColor: "red",
-          backgroundColor: "transparent",
-          position: "relative",
-        }}
-      >
+      {!isUserLoggedIn && <div></div>}
+      {isUserLoggedIn && (
         <div
+          className=""
           style={{
-            color: "#000",
-            paddingTop: "160px",
-            paddingBottom: "120px",
-            fontSize: "48px",
-            fontStyle: "normal",
-            fontWeight: "800",
-            lineHeight: "normal",
-            textAlign: "center",
-          }}
-        >
-          What people say about us
-        </div>
-        <div
-          style={{
-            // marginLeft: "-260px",
-            // backgroundColor: "blue",
-            width: "97vw",
-            position: "absolute",
-            transform: "translateX(-12%)",
-            overflow: "hidden",
-            width: "100vw",
-
+            width: "1080px",
+            height: "100%",
+            // backgroundColor: "red",
+            backgroundColor: "transparent",
             position: "relative",
-            left: "0",
           }}
         >
           <div
+            className=" displayJustCenAlinCen"
             style={{
-              display: "flex",
-              alignItems: "center",
-              height: "390px",
-              gap: "30px",
-              width: `${data.length * 400}px`,
-              transform: `translateX(-${currentIndex * 400}px)`,
+              height: "150px",
+              width: "1080px",
+              color: "#000",
+              fontSize: "48px",
+              fontStyle: "normal",
+              fontWeight: "800",
+              lineHeight: "normal",
+              textAlign: "center",
+              marginBottom: "10px",
             }}
           >
-            {data.map((card, index) => {
-              return (
-                <div
-                  key={index}
-                  style={{
-                    minWidth: "366px",
-                    backgroundColor: "white",
-                    height: "374px",
-                    boxShadow: "0px 0px 10px gray",
-                  }}
-                >
+            What people say about us
+          </div>
+          <div
+            className=""
+            style={{
+              width: "97vw",
+              position: "absolute",
+              transform: "translateX(-12%)",
+              overflow: "hidden",
+              width: "100vw",
+              position: "relative",
+              left: "0",
+            }}
+          >
+            <div
+              className=""
+              style={{
+                display: "flex",
+                alignItems: "center",
+                height: "390px",
+                gap: "30px",
+                width: `${data.length * 400}px`,
+                transform: `translateX(-${currentIndex * 400}px)`,
+              }}
+            >
+              {data.map((card, index) => {
+                return (
                   <div
+                    className=" borderR5 borderShadowGray"
+                    key={index}
                     style={{
-                      display: "flex",
-                      flexDirection: "column",
-                      justifyContent: "start",
-                      alignItems: "center",
-                      padding: "30px",
+                      minWidth: "366px",
+                      backgroundColor: "white",
+                      height: "374px",
                     }}
                   >
-                    <div>
-                      {convertNumberToArray(card.stars).map((num) => {
-                        return <StartIcon />;
-                      })}
-                    </div>
                     <div
+                      className=" displayJustCenAlinCen"
                       style={{
-                        marginTop: "20px",
-                      }}
-                    >
-                      {card.text}
-                    </div>
-                    <div
-                      style={{
-                        display: "flex",
-                        flexDirection: "row",
-                        justifyContent: "front",
-                        alignItems: "bottom",
+                        height: "354px",
+                        flexDirection: "column",
+                        padding: "10px",
+                        gap: "10px",
                       }}
                     >
                       <div
+                        className=" displayJustCenAlinCen"
                         style={{
-                          display: "flex",
-                          flexDirection: "row",
-                          alignItems: "center",
-                          marginTop: "70px",
-                          padding: "10px",
-
-                          gap: "70px",
+                          overflow: "hidden",
+                          height: "30px",
+                          width: "300px",
                         }}
                       >
-                        <img src={card.userImage}></img>
-                        <div>{card.userName}</div>
+                        {convertNumberToArray(card.stars).map((num) => {
+                          return <StartIcon />;
+                        })}
+                      </div>
+                      <div
+                        className=" displayJustCenAlinCen overFlowHidden"
+                        style={{
+                          overflow: "hidden",
+                          height: "30px",
+                          width: "300px",
+                        }}
+                      >
+                        {card.title}
+                      </div>
+                      <div
+                        className=" displayAlinCen overFlowHidden"
+                        style={{
+                          textAlign: "center",
+                          height: "140px",
+                          width: "300px",
+                        }}
+                      >
+                        {card.text}
+                      </div>
+                      <div
+                        className=" displayJustCenAlinCen"
+                        style={{
+                          width: "300px",
+                          height: "70px",
+                          flexDirection: "row",
+                        }}
+                      >
+                        <div
+                          className="  displayJustCenAlinCen"
+                          style={{
+                            display: "flex",
+                            flexDirection: "row",
+                            gap: "20px",
+                          }}
+                        >
+                          <img
+                            className="borderR50pr"
+                            style={{
+                              height: "70px",
+                              width: "70px",
+                            }}
+                            src={card.userImage}
+                            alt={{}}
+                          ></img>
+                          <div>{card.userName}</div>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              );
-            })}
-          </div>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-            }}
-          >
-            <button onClick={handlePrevButton} disabled={disablePrevButton}>
-              Prev
-            </button>
-            <button onClick={handleNextButton} disabled={disableNextButton}>
-              Next
-            </button>
+                );
+              })}
+            </div>
+            <div
+              className=" displayJustCenAlinCen"
+              style={{
+                height: "70px",
+                gap: "20px",
+              }}
+            >
+              <button
+                className="buttonNextPrev borderR5"
+                onClick={handlePrevButton}
+                disabled={disablePrevButton}
+              >
+                Prev
+              </button>
+              <button
+                className="buttonNextPrev borderR5 "
+                onClick={handleNextButton}
+                disabled={disableNextButton}
+              >
+                Next
+              </button>
+            </div>
           </div>
         </div>
-      </div>
+      )}
     </div>
   );
 }

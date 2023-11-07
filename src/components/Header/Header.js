@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
-import LogoDark from "../icons/DarkLogo";
-import Logo from "../icons/Logo";
-
+import LogoDark from "../../icons/DarkLogo";
+import Logo from "../../icons/Logo";
 import { signOut } from "firebase/auth";
-import { myAuthentication } from "../firebase/myFirebase";
-import ContactsPage from "../Pages/Contacts/contactsPage";
+import { myAuthentication } from "../../firebase/myFirebase";
+import ContactsPage from "../../Pages/Contacts/contactsPage";
 import Modal from "react-modal";
+import SignModal from "./SignOpenModal";
+import SignOpenModal from "./SignOpenModal";
+import "./Header.css";
 
 const customStyles = {
   content: {
@@ -24,6 +26,7 @@ const customStyles = {
 };
 
 function Header(props) {
+  const { darkLogo, user, isUserLoggedIn } = props;
   const [openModal, setOpenModal] = useState(false);
   const handleContactButton = () => {
     setOpenModal(true);
@@ -43,8 +46,9 @@ function Header(props) {
   const handleServicesPage = () => {
     navigate("/services");
   };
-  const handleContactsPage = () => {
-    navigate("/contacts");
+  const handleContactPage = () => {
+    setOpenModal(true);
+    // navigate("/sign-in");
   };
 
   const handleProfilePage = () => {
@@ -67,24 +71,8 @@ function Header(props) {
   ];
 
   return (
-    <div
-      style={{
-        width: "100%",
-        backgroundColor: "transparent",
-        display: "flex",
-        justifyContent: "center",
-        height: "40px",
-        alignItems: "center",
-      }}
-    >
-      <div
-        style={{
-          width: "1080px",
-          backgroundColor: "transparent",
-          display: "flex",
-          justifyContent: "space-between",
-        }}
-      >
+    <div className="headerMainBox d-just-c-align-c">
+      <div className="headerSecondBox">
         <div>
           {props.darkLogo ? (
             <Logo
@@ -103,14 +91,7 @@ function Header(props) {
           )}
         </div>
         {props.user ? (
-          <div
-            style={{
-              width: "50%",
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-            }}
-          >
+          <div className="navbarBox d-flex just-c align-c">
             {navbarItems.map((item) => {
               return (
                 <span
@@ -124,92 +105,52 @@ function Header(props) {
                 </span>
               );
             })}
-
             <div
+              className="cursorPointer"
               onClick={handleSignOut}
               style={{
-                cursor: "pointer",
-                color: props.darkLogo ? "#ffff" : "#6D7D8B",
+                color: darkLogo ? "#ffff" : "#6D7D8B",
               }}
             >
               Sign Out
             </div>
             <div
+              className="cursorPointer helloBox"
               style={{
-                paddingLeft: "20px",
-                cursor: "pointer",
-                color: props.darkLogo ? "#ffff" : "#6D7D8B",
-                fontSize: "14px",
+                color: darkLogo ? "#ffff" : "#6D7D8B",
               }}
             >
               Hello {props.user.email}
             </div>
           </div>
         ) : (
-          <div
-            style={{
-              width: "40%",
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-            }}
-          >
+          <div className="signInModalMainbox  d-flex align-c">
             <span
               style={{
                 cursor: "pointer",
                 color: props.darkLogo ? "#ffff" : "#6D7D8B",
               }}
             >
-              Sign in
+              <div
+                style={{
+                  cursor: "pointer",
+                  color: props.darkLogo ? "#ffff" : "#6D7D8B",
+                }}
+              >
+                <SignOpenModal user={user} darkLogo={darkLogo} />
+              </div>
             </span>
           </div>
         )}
       </div>
       <Modal isOpen={openModal} style={customStyles}>
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            width: "500px",
-            height: "500px",
-            backgroundcolor: "white",
-            flexDirection: "column",
-          }}
-        >
+        <div className="contactModalMainBox d-flex just-c align-c">
           <ContactsPage />
-          <div
-            style={{
-              marginTop: "10px",
-              display: "flex",
-              justifyContent: "center",
-              flexDirection: "column",
-            }}
-          >
-            <button
-              style={{
-                width: "311px",
-                height: "30px",
-                border: "2px solid white",
-                borderRadius: "5px",
-                backgroundColor: "pink",
-                marginBottom: "10px",
-              }}
-              onClick={closeModal}
-            >
+          <div className="sendCancelButtonBox  d-flex just-c align-c">
+            <button className="sendButton" onClick={closeModal}>
               Send It
             </button>
-            <button
-              style={{
-                width: "311px",
-                height: "30px",
-                border: "2px solid white",
-                borderRadius: "5px",
-                backgroundColor: "pink",
-                marginBottom: "10px",
-              }}
-              onClick={closeModal}
-            >
+            <button className="cancelButton" onClick={closeModal}>
               Cancel
             </button>
           </div>

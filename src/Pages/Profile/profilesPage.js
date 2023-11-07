@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Header from "../../components/Header";
+import Header from "../../components/Header/Header";
 import HomeImageMeeting from "../../images/Mask-group.png";
 import { getDocs } from "firebase/firestore";
 import { blogsCollection } from "../../firebase/myFirebase";
@@ -22,16 +22,10 @@ function ProfilesPage(props) {
 
   return (
     <div
+      className="d-flex just-c align-c flex-direction-c width-100vw height-100vh"
       style={{
         backgroundImage: "#F5F6FA",
         backgroundSize: "cover",
-        width: "100%",
-        height: "100vh",
-        // display: "flex",
-        // justifyContent: "center",
-        // alignContent: "center",
-        // flexDirection: "column",
-        // position: "relative",
       }}
     >
       <Header user={props.user} />
