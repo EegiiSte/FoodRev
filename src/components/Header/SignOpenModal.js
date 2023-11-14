@@ -1,15 +1,19 @@
-import React, { useState } from "react";
-import ContactsPage from "../../Pages/Contacts/contactsPage";
+import React, { useEffect, useState } from "react";
+import ContactsPage from "../../Pages/Contact/ContactPage";
 import Modal from "react-modal";
 import SignIn from "../../SignIn";
 import { SignInMethod } from "firebase/auth";
 import SignInModal from "./SignInModal";
-import "../../Pages/product/comment/comment.css";
+import "../../Pages/Product/comment/comment.css";
 import SignUpModal from "./SignUpModal";
 import "./SignOpenModal.css";
+import { Button } from "antd";
+import { useUserContext } from "../../context/UserContext";
+import { SignUpAntdModal } from "../../layout/SignUpAntdModal";
 
 function SignOpenModal(props) {
   const { user, isUserLoggedIn, darkLogo } = props;
+  const [signUpModalShow, setSignUpModalShow] = useState(false);
 
   const customStyles = {
     content: {
@@ -38,7 +42,7 @@ function SignOpenModal(props) {
   };
 
   const closeSignModal = () => {
-    console.log("end darj bnaaaa");
+    // console.log("end darj bnaaaa");
     setOpenSignModal(false);
   };
   const handleSignPage = () => {
@@ -48,7 +52,14 @@ function SignOpenModal(props) {
 
   return (
     <div style={{ cursor: "poiner" }}>
-      <div onClick={handleSignPage}>Sign In</div>
+      <div
+        style={{
+          color: "white",
+        }}
+        onClick={handleSignPage}
+      >
+        Sign In
+      </div>
       <Modal isOpen={openSignModal} style={customStyles}>
         <div className="toChangeModalBox  d-flex just-c align-c" style={{}}>
           {changeToSignUpSignIn ? (
@@ -65,9 +76,16 @@ function SignOpenModal(props) {
             {changeToSignUpSignIn ? (
               <div className="footerBottomBox">
                 <h6 className="notiwords"> Don't have an account</h6>
-                <button className="footerToSign" onClick={handleChangeToSignUp}>
+
+                <Button
+                  className="footerToSign"
+                  onClick={() => {
+                    setSignUpModalShow(true);
+                  }}
+                  type={"primary"}
+                >
                   Sign up
-                </button>
+                </Button>
               </div>
             ) : (
               <div className="footerBottomBox">
@@ -85,6 +103,12 @@ function SignOpenModal(props) {
           </div>
         </div>
       </Modal>
+      <SignUpAntdModal
+        signUpModalShow={signUpModalShow}
+        onHide={() => {
+          setSignUpModalShow(false);
+        }}
+      />
     </div>
   );
 }

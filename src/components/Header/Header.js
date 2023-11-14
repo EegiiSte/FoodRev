@@ -1,33 +1,20 @@
+import { signOut } from "firebase/auth";
 import React, { useState } from "react";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { useUserContext } from "../../context/UserContext";
+import { myAuthentication } from "../../firebase/myFirebase";
 import LogoDark from "../../icons/DarkLogo";
 import Logo from "../../icons/Logo";
-import { signOut } from "firebase/auth";
-import { myAuthentication } from "../../firebase/myFirebase";
-import ContactsPage from "../../Pages/Contacts/contactsPage";
-import Modal from "react-modal";
-import SignModal from "./SignOpenModal";
-import SignOpenModal from "./SignOpenModal";
+import ContactModal from "../../Pages/Contact/ContactModal";
 import "./Header.css";
-
-const customStyles = {
-  content: {
-    top: "50%",
-    left: "50%",
-    right: "auto",
-    bottom: "auto",
-    marginRight: "-50%",
-    transform: "translate(-50%, -50%)",
-    border: "none",
-  },
-  overlay: {
-    backgroundColor: " rgba(0, 0, 0, 0.8)",
-  },
-};
+import SignOpenModal from "./SignOpenModal";
 
 function Header(props) {
-  const { darkLogo, user, isUserLoggedIn } = props;
+  const { user } = useUserContext();
+  const { darkLogo } = props;
   const [openModal, setOpenModal] = useState(false);
+  const isAdmin = user && user.email === "elektronjaal@gmail.com";
+
   const handleContactButton = () => {
     setOpenModal(true);
   };
@@ -43,12 +30,9 @@ function Header(props) {
   const handleProductsPage = () => {
     navigate("/products");
   };
-  const handleServicesPage = () => {
-    navigate("/services");
-  };
-  const handleContactPage = () => {
-    setOpenModal(true);
-    // navigate("/sign-in");
+
+  const handleAdminPage = () => {
+    navigate("/admin");
   };
 
   const handleProfilePage = () => {
@@ -65,13 +49,12 @@ function Header(props) {
 
   const navbarItems = [
     { name: "Products", onClick: handleProductsPage },
-    { name: "Services", onClick: handleServicesPage },
     { name: "Contacts", onClick: handleContactButton },
     { name: "Profile", onClick: handleProfilePage },
   ];
 
   return (
-    <div className="headerMainBox d-just-c-align-c">
+    <div className="headerMainBox d-just-c-align-c" style={{ display: "none" }}>
       <div className="headerSecondBox">
         <div>
           {props.darkLogo ? (
@@ -105,6 +88,17 @@ function Header(props) {
                 </span>
               );
             })}
+            {isAdmin && (
+              <div
+                className="cursorPointer"
+                onClick={handleAdminPage}
+                style={{
+                  color: darkLogo ? "#ffff" : "#6D7D8B",
+                }}
+              >
+                Admin
+              </div>
+            )}
             <div
               className="cursorPointer"
               onClick={handleSignOut}
@@ -143,19 +137,7 @@ function Header(props) {
           </div>
         )}
       </div>
-      <Modal isOpen={openModal} style={customStyles}>
-        <div className="contactModalMainBox d-flex just-c align-c">
-          <ContactsPage />
-          <div className="sendCancelButtonBox  d-flex just-c align-c">
-            <button className="sendButton" onClick={closeModal}>
-              Send It
-            </button>
-            <button className="cancelButton" onClick={closeModal}>
-              Cancel
-            </button>
-          </div>
-        </div>
-      </Modal>
+      <ContactModal user={user} closeModal={closeModal} openModal={openModal} />
     </div>
   );
 }

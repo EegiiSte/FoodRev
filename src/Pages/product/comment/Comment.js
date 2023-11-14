@@ -6,13 +6,14 @@ import {
   replyCollection,
 } from "../../../firebase/myFirebase";
 import Like from "../../../icons/Like";
-import CommentReply from "../reply-comment/CommentReply";
+import CommentReply from "./reply-comment/CommentReply";
 import CommentEditAndDelete from "./CommentEditAndDelete";
 import DislikeCounter from "./Dislike-Counter";
 import DisplayCommentReplyInput from "./DisplayCommentReplyInput";
 import EditCommentModal from "./EditCommentModal";
 import LikeCounter from "./Like-Counter";
 import "./comment.css";
+import NewLikeCounter from "./LikeNewCounter";
 
 const Comment = (props) => {
   const { comment, userId, blogData, user, setParentCommentId } = props;
@@ -21,6 +22,9 @@ const Comment = (props) => {
   const [replyCommentData, setReplyCommentData] = useState([]);
   const [loading, setLoading] = useState(false);
 
+  const [openEditModal, setOpenEditModal] = useState(false);
+  const [selectedComment, setSelectedComment] = useState({});
+  // console.log(selectedComment);
   useEffect(() => {
     const getBlogReplyCommentData = async () => {
       onSnapshot(replyCollection, (collection) => {
@@ -42,11 +46,8 @@ const Comment = (props) => {
       });
       setLoading(false);
     };
-    return () => getBlogReplyCommentData();
+    getBlogReplyCommentData();
   }, [comment]);
-
-  const [openEditModal, setOpenEditModal] = useState(false);
-  const [selectedComment, setSelectedComment] = useState({});
 
   const handleReplyButton = (commentId) => {
     // setParentCommentId(commentId);
@@ -56,12 +57,15 @@ const Comment = (props) => {
   const closeEditModal = () => {
     setOpenEditModal(false);
   };
+  // const timeage = comment.timeStamp.toDate().toString();
+  // console.log(timeage);
 
   return (
     <div className="commentMainBox borderR5 " key={{}}>
       <img className="userImageComment" src={comment.userImage} alt="" />
       <div>
         <div className=" userNameComment">{comment.userName}</div>
+        <div></div>
         <div>
           <div className=" commentSecondBox">
             <div className=" commentTextBox d-flex just-c align-c ">
@@ -126,6 +130,7 @@ const Comment = (props) => {
         </div>
       </div>
       <EditCommentModal
+        comment={comment}
         openEditModal={openEditModal}
         selectedComment={selectedComment}
         closeEditModal={closeEditModal}

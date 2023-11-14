@@ -41,38 +41,7 @@ function Home1Intro(props) {
             width: "45%",
           }}
         >
-          All in one for your remote team chats, collaboration and track
-          projects
-        </div>
-        <div
-          style={{
-            paddingTop: "70px",
-            gap: "15px",
-          }}
-        >
-          <input
-            style={{
-              width: "317px",
-              height: "56px",
-            }}
-            placeholder="email"
-          ></input>
-          <button
-            style={{
-              marginLeft: "15px",
-              padding: "16px 20px",
-              borderRadius: "4px",
-              backgroundColor: "pink",
-              transitionDuration: "0.4s",
-              hover: {
-                backgroundColor: "green" /* Green */,
-                color: "white",
-              },
-              cursor: "pointer",
-            }}
-          >
-            Get early access
-          </button>
+          Restaurant reviews and recommendations: how we do it
         </div>
       </div>
     </div>

@@ -13,6 +13,9 @@
 .just-space-between {
   justify-content: space-between;
 }
+.just-space-around {
+  justify-content: space-around;
+}
 .align-start {
   align-items: start;
 }
@@ -50,7 +53,8 @@
   width: 100vw;
 }
 .width-1080 {
-  width: 1080px;
+  max-width: 1080px;
+  padding: 0px;
 }
 .height-100pr {
   height: 100%;
@@ -76,6 +80,9 @@
   border-radius: 7px;
 }
 .borderR10 {
+  border-radius: 10px;
+}
+.border-r10 {
   border-radius: 10px;
 }
 .borderR50pr {
@@ -125,6 +132,10 @@
 }
 .overFlowHidden {
   overflow: hidden;
+}
+
+.overFlowScroll {
+  overflow: scroll;
 }
 /* ---------------------------------------------------------------- */
 

@@ -14,7 +14,7 @@ function HomePage(props) {
       <Home2Teamwork />
       <Home3TaskManagement />
       <Home4 />
-      <Home5Testimonial user={props.user} isUserLoggedIn={isUserLoggedIn} />
+
       <Footer />
     </div>
   );

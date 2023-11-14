@@ -1,56 +1,62 @@
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
+import ContactPage from "./Pages/Contact/ContactPage";
+import HomePage from "./Pages/Home/homePage";
+import ProductsPage from "./Pages/Products/productsPage";
+import ProfilesPage from "./Pages/Profile/profilesPage";
 import "./sign.css";
 import SignIn from "./SignIn";
 import SignUp from "./signUp";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import HomePage from "./Pages/Home/homePage";
-import { useEffect, useState } from "react";
-import { myAuthentication } from "./firebase/myFirebase";
-import ContactsPage from "./Pages/Contacts/contactsPage";
-import ProductsPage from "./Pages/Products/productsPage";
-import ProfilesPage from "./Pages/Profile/profilesPage";
-import ServicesPage from "./Pages/Services/servicesPage";
-
-import Product from "./Pages/product/Product";
-
-import { ToastContainer, toast } from "react-toastify";
+import Product from "./Pages/Product/Sub-product/Product";
 import "react-toastify/dist/ReactToastify.css";
 import { useUserContext } from "./context/UserContext";
+import AdminPage from "./Pages/Admin/AdminPage";
+import { HomeNewPage } from "./Pages/HomeNew/HomeNewPage";
 
 const App = () => {
-  const { user, isUserLoggedIn, loading } = useUserContext();
+  const { user, isUserLoggedIn, isAdmin, loading } = useUserContext();
 
   return (
     <div>
       {loading && <div>Loading Page Bro</div>}
       <BrowserRouter>
-        {!loading && isUserLoggedIn && (
-          <Routes>
-            <Route
-              path="/"
-              element={<HomePage user={user} isUserLoggedIn={isUserLoggedIn} />}
-            />
-            <Route path="/products" element={<ProductsPage />} />
-            <Route path="/products/:id" element={<Product user={user} />} />
-            <Route path="/contacts" element={<ContactsPage user={user} />} />
-            <Route path="/services" element={<ServicesPage user={user} />} />
-            <Route path="/profile" element={<ProfilesPage user={user} />} />
-          </Routes>
-        )}
-        {!loading && !isUserLoggedIn && (
-          <Routes>
-            <Route path="/sign-up" element={<SignUp user={user} />} />
-            <Route
-              path="/sign-in"
-              element={<SignIn user={user} isUserLoggedIn={isUserLoggedIn} />}
-            />
-            <Route
-              path="/"
-              element={<HomePage user={user} isUserLoggedIn={isUserLoggedIn} />}
-              // element={<SignIn user={user} isUserLoggedIn={isUserLoggedIn} />}
-            />
-          </Routes>
-        )}
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <HomeNewPage user={user} isUserLoggedIn={isUserLoggedIn} />
+            }
+          />
+          <Route
+            path="/old_home"
+            element={<HomePage user={user} isUserLoggedIn={isUserLoggedIn} />}
+          />
+          {!loading && isUserLoggedIn && (
+            <Route>
+              <Route path="/products" element={<ProductsPage />} />
+              <Route path="/products/:id" element={<Product user={user} />} />
+              <Route path="/contact" element={<ContactPage user={user} />} />
+              <Route path="/profile" element={<ProfilesPage user={user} />} />
+              {isAdmin && <Route path="/admin" element={<AdminPage />} />}
+            </Route>
+          )}
+          {!loading && !isUserLoggedIn && (
+            <Route>
+              <Route path="/sign-up" element={<SignUp user={user} />} />
+              <Route
+                path="/sign-in"
+                element={<SignIn user={user} isUserLoggedIn={isUserLoggedIn} />}
+              />
+              <Route
+                path="/"
+                element={
+                  <HomePage user={user} isUserLoggedIn={isUserLoggedIn} />
+                }
+                // element={<SignIn user={user} isUserLoggedIn={isUserLoggedIn} />}
+              />
+            </Route>
+          )}
+        </Routes>
       </BrowserRouter>
     </div>
   );

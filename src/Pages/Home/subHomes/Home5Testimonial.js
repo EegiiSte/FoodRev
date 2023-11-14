@@ -3,7 +3,7 @@ import testimonialData from "./TestimonialData";
 import StartIcon from "../../../icons/StarIcon";
 import { getDocs } from "firebase/firestore";
 import { blogsCollection } from "../../..//firebase/myFirebase";
-import "../../product/comment/comment.css";
+import "../../Product/comment/comment.css";
 
 const convertNumberToArray = (number) => {
   const result = [];
@@ -59,7 +59,7 @@ function Home5Testimonial(props) {
         <div
           className=""
           style={{
-            width: "1080px",
+            maxWidth: "1080px",
             height: "100%",
             // backgroundColor: "red",
             backgroundColor: "transparent",
@@ -70,7 +70,7 @@ function Home5Testimonial(props) {
             className=" displayJustCenAlinCen"
             style={{
               height: "150px",
-              width: "1080px",
+              maxWidth: "1080px",
               color: "#000",
               fontSize: "48px",
               fontStyle: "normal",

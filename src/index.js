@@ -3,6 +3,8 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import "./mainStyle.css";
 import "./sign.css";
+import "./mobileStyle.css";
+import "./TabletStyle.css";
 import App from "./App";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";

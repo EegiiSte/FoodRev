@@ -4,11 +4,12 @@ import Modal from "react-modal";
 import {
   blogsCollection,
   commentCollection,
-} from "../../../firebase/myFirebase";
+  replyCollection,
+} from "../../../../firebase/myFirebase";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-function EditCommentModal(props) {
+function EditReplyCommentModal(props) {
   const customStyles = {
     content: {
       top: "50%",
@@ -24,33 +25,38 @@ function EditCommentModal(props) {
     },
   };
 
-  const { openEditModal, selectedComment, closeEditModal, comment } = props;
+  const {
+    openEditReplyModal,
+    replyComment,
+    closeEditReplyModal,
+    selectedReplyComment,
+  } = props;
   const [inputValue, setInputValue] = useState();
 
   const handleInput = (e) => {
     setInputValue(e.target.value);
   };
-
   useEffect(() => {
-    if (comment) {
-      setInputValue(comment.comment);
+    if (replyComment) {
+      setInputValue(replyComment.comment);
     }
-  }, [comment]);
+  }, [replyComment]);
 
   const handleCancelButton = () => {
-    closeEditModal();
+    setInputValue(selectedReplyComment.comment);
+    closeEditReplyModal();
   };
 
   const handleSaveButton = async () => {
-    await updateDoc(doc(commentCollection, selectedComment.commentId), {
-      ...selectedComment,
+    await updateDoc(doc(replyCollection, selectedReplyComment.replyCommentId), {
+      ...selectedReplyComment,
       comment: inputValue,
     })
       .then((res) => {
         toast.success("Comment edited successfully!", {
           position: toast.POSITION.TOP_RIGHT,
         });
-        closeEditModal();
+        closeEditReplyModal();
       })
       .catch((err) => {
         console.log(err);
@@ -58,7 +64,7 @@ function EditCommentModal(props) {
   };
 
   return (
-    <Modal isOpen={openEditModal} style={customStyles}>
+    <Modal isOpen={openEditReplyModal} style={customStyles}>
       <div className="marginTop10 borderR5 box-shadow-gray">
         <textarea
           className="borderR5 d-flex align-start"
@@ -98,4 +104,4 @@ function EditCommentModal(props) {
   );
 }
 
-export default EditCommentModal;
+export default EditReplyCommentModal;

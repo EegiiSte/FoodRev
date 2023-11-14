@@ -10,7 +10,8 @@ import Header from "./components/Header/Header";
 import { myAuthentication } from "./firebase/myFirebase";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import "./Pages/product/comment/comment.css";
+import "./Pages/Product/comment/comment.css";
+import { LayoutMain } from "./layout/LayoutMain";
 const validateForm = yup.object().shape({
   email: yup.string().email("Invalid email address").required(),
   password: yup
@@ -132,97 +133,99 @@ function SignIn(props) {
   };
 
   return (
-    <div className="body ">
-      <div className="mainBox ">
-        <Header user={props.user} darkLogo={false} />
-        <div className="headBox ">
-          <h1 className="header">Welcome back!</h1>
-          <h1 className="secondHeader">
-            Enter your Cre... to access your account
-          </h1>
-        </div>
-        <div className="inputBox">
-          <div className="signbox">
-            <h1 className="lineName">Email Address</h1>
-            <input
-              className="inputLineEmail"
-              placeholder="Enter Email"
-              type="email"
-              name="email"
-              value={formValues.email}
-              onChange={HandleIput}
-              style={{ border: `2px solid ${colorErrors.email}` }}
-            ></input>
-            <h1 id="notificationEmail">{formErrors.email}</h1>
-          </div>
-          <div className="signbox">
-            <h1 className="lineName">Password</h1>
-            <input
-              className="inputLinePassword"
-              placeholder="Enter Password"
-              type={showPassword ? "text" : "password"}
-              name="password"
-              value={formValues.password}
-              onChange={HandleIput}
-              style={{ border: `2px solid ${colorErrors.password}` }}
-            ></input>
-            <h1 id="notificationPassword">{formErrors.password}</h1>
-          </div>
-          <div className="notiwords" id="showPasswordBox">
-            Show Password
-            <input
-              type="checkbox"
-              checked={showPassword}
-              onClick={handleShowPassword}
-            />
-          </div>
-          <div className="checkBox">
-            <input
-              type="checkbox"
-              className="checkBoxButton"
-              checked={formValues.checkbox}
-              onClick={HandleCheckBox}
-            ></input>
-            <h1 className="notiwords">Remember email</h1>
-          </div>
-          <div>
-            <h1
-              id="notificationCheckBox"
-              className="notiwords"
-              style={{ borderBlockColor: colorErrors.checkbox }}
-            >
-              {formErrors.checkbox}
+    <LayoutMain>
+      <div className="body ">
+        <div className="mainBox ">
+          <Header user={props.user} darkLogo={false} />
+          <div className="headBox ">
+            <h1 className="header">Welcome back!</h1>
+            <h1 className="secondHeader">
+              Enter your Cre... to access your account
             </h1>
           </div>
-          <div className="signButtonBox">
-            <button className="SignButton" onClick={handleSignIn}>
-              Sign In
-            </button>
+          <div className="inputBox">
+            <div className="signbox">
+              <h1 className="lineName">Email Address</h1>
+              <input
+                className="inputLineEmail"
+                placeholder="Enter Email"
+                type="email"
+                name="email"
+                value={formValues.email}
+                onChange={HandleIput}
+                style={{ border: `2px solid ${colorErrors.email}` }}
+              ></input>
+              <h1 id="notificationEmail">{formErrors.email}</h1>
+            </div>
+            <div className="signbox">
+              <h1 className="lineName">Password</h1>
+              <input
+                className="inputLinePassword"
+                placeholder="Enter Password"
+                type={showPassword ? "text" : "password"}
+                name="password"
+                value={formValues.password}
+                onChange={HandleIput}
+                style={{ border: `2px solid ${colorErrors.password}` }}
+              ></input>
+              <h1 id="notificationPassword">{formErrors.password}</h1>
+            </div>
+            <div className="notiwords" id="showPasswordBox">
+              Show Password
+              <input
+                type="checkbox"
+                checked={showPassword}
+                onClick={handleShowPassword}
+              />
+            </div>
+            <div className="checkBox">
+              <input
+                type="checkbox"
+                className="checkBoxButton"
+                checked={formValues.checkbox}
+                onClick={HandleCheckBox}
+              ></input>
+              <h1 className="notiwords">Remember email</h1>
+            </div>
+            <div>
+              <h1
+                id="notificationCheckBox"
+                className="notiwords"
+                style={{ borderBlockColor: colorErrors.checkbox }}
+              >
+                {formErrors.checkbox}
+              </h1>
+            </div>
+            <div className="signButtonBox">
+              <button className="SignButton" onClick={handleSignIn}>
+                Sign In
+              </button>
+            </div>
+          </div>
+          <div className="footerBox, notiwords, orLineBox">
+            <div className="orLine"></div>
+            <div>or</div>
+            <div className="orLine"></div>
+          </div>
+          <div className="footerBox">
+            <div className="signToBox">
+              <button className="signToButton" onClick={handleSignInWithGoogle}>
+                Sign in with Google
+              </button>
+              <button className="signToButton">Sign in with Apple</button>
+            </div>
+            <div className="footerBottomBox">
+              <h6 className="notiwords"> Don't have an account</h6>
+              <button onClick={navigateToSignUpPage} className="footerToSign">
+                Sign up
+              </button>
+            </div>
           </div>
         </div>
-        <div className="footerBox, notiwords, orLineBox">
-          <div className="orLine"></div>
-          <div>or</div>
-          <div className="orLine"></div>
-        </div>
-        <div className="footerBox">
-          <div className="signToBox">
-            <button className="signToButton" onClick={handleSignInWithGoogle}>
-              Sign in with Google
-            </button>
-            <button className="signToButton">Sign in with Apple</button>
-          </div>
-          <div className="footerBottomBox">
-            <h6 className="notiwords"> Don't have an account</h6>
-            <button onClick={navigateToSignUpPage} className="footerToSign">
-              Sign up
-            </button>
-          </div>
-        </div>
+        <div className="mainSecondBox"></div>
+        <ToastContainer />
       </div>
-      <div className="mainSecondBox"></div>
-      <ToastContainer />
-    </div>
+    </LayoutMain>
   );
 }
 

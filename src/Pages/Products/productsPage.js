@@ -1,11 +1,14 @@
 import { onSnapshot } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import { ToastContainer } from "react-toastify";
-import Card from "../../components/Card";
 import Footer from "../../components/Footer";
 import Header from "../../components/Header/Header";
 import { useUserContext } from "../../context/UserContext";
 import { blogsCollection } from "../../firebase/myFirebase";
+import { LayoutMain } from "../../layout/LayoutMain";
+
+import Card from "./Card";
+
 import ModalCreateNewBlog from "./ModalCreateNewBlog";
 
 function ProductPage(props) {
@@ -25,14 +28,14 @@ function ProductPage(props) {
           const blogData = doc.data();
           blogData.blogId = blogId;
           return blogData;
-          // return { ...doc.data(), blogId: doc.id };
         });
+        // console.log(firebaseDocData);
         setData(firebaseDocData);
         setFilteredArray(firebaseDocData);
       });
       setLoading(false);
     };
-    return () => getData();
+    getData();
   }, []);
 
   const handleInputSearch = (e) => {
@@ -56,94 +59,94 @@ function ProductPage(props) {
   const closeModal = () => {
     setOpenModal(false);
   };
-  return (
-    <div
-      style={{
-        flexDirection: "row",
-      }}
-    >
-      <section>
-        <div
-          className="width-100vw height-100vh backgroundSize-c d-flex 
-        align-c just-c flex-direction-c"
-          style={{
-            backgroundImage: "#F5F6FA",
-          }}
-        >
-          <Header user={user} />
-          <div className="height-100vh width-1080 d-flex marginTop10 flex-direction-c">
-            <div
-              className="d-flex just-c align-c width-1080 gap-10"
-              style={{
-                height: "100px",
-              }}
-            >
-              <button
-                onClick={handleCreateNewPostButton}
-                style={{
-                  height: "46px",
-                  width: "200px ",
-                }}
-              >
-                Create new post
-              </button>
 
-              <input
-                onChange={handleInputSearch}
-                value={searchValue}
-                placeholder="Search by name"
+  return (
+    <LayoutMain>
+      <div
+        className=" d-flex overFlowScroll"
+        style={{
+          flexDirection: "row",
+        }}
+      >
+        <section>
+          <div
+            className=" width-100vw height-100vh backgroundSize-c d-flex 
+        align-c just-c flex-direction-c"
+            style={{
+              backgroundImage: "#F5F6FA",
+            }}
+          >
+            <div className="height-100vh width-1080 d-flex marginTop10 flex-direction-c">
+              <div
+                className="d-flex just-c align-c width-1080 gap-10"
                 style={{
-                  height: "40px",
-                  width: "500px",
-                }}
-                // placeholder="Search"
-              ></input>
-              <button
-                style={{
-                  height: "46px",
-                  width: "100px ",
+                  height: "100px",
                 }}
               >
-                Search
-              </button>
-            </div>
-            <div
-              className="width-1080"
-              style={{
-                height: "450px",
-              }}
-            >
-              {loading && <div>Loading ...</div>}
-              {!loading && data.length === 0 && <div>There is not blogs</div>}
-              {!loading && data.length > 0 && (
-                <div
-                  className="d-flex align-start width-1080 gap-10 padding10"
+                <button
+                  onClick={handleCreateNewPostButton}
                   style={{
-                    height: "738px",
-                    flexWrap: "wrap",
-                    overflow: "scroll",
-                    overflowBlock: "hidden",
+                    height: "46px",
+                    width: "200px ",
                   }}
                 >
-                  {filteredArray.map((card, index) => {
-                    return <Card card={card} />;
-                  })}
-                </div>
-              )}
+                  Create new post
+                </button>
+
+                <input
+                  onChange={handleInputSearch}
+                  value={searchValue}
+                  placeholder="Search by name"
+                  style={{
+                    height: "40px",
+                    width: "500px",
+                  }}
+                  // placeholder="Search"
+                ></input>
+                <button
+                  style={{
+                    height: "46px",
+                    width: "100px ",
+                  }}
+                >
+                  Search
+                </button>
+              </div>
+              <div
+                className="width-1080"
+                style={{
+                  height: "450px",
+                }}
+              >
+                {loading && <div>Loading ...</div>}
+                {!loading && data.length === 0 && <div>There is not blogs</div>}
+                {!loading && data.length > 0 && (
+                  <div
+                    className="d-flex align-start width-1080 gap-10 padding10"
+                    style={{
+                      height: "738px",
+                      flexWrap: "wrap",
+                      overflow: "scroll",
+                      overflowBlock: "hidden",
+                    }}
+                  >
+                    {filteredArray.map((card, index) => {
+                      return <Card card={card} />;
+                    })}
+                  </div>
+                )}
+              </div>
             </div>
+            <ModalCreateNewBlog
+              user={user}
+              openModal={openModal}
+              closeModal={closeModal}
+            />
           </div>
-          <ModalCreateNewBlog
-            user={user}
-            openModal={openModal}
-            closeModal={closeModal}
-          />
-        </div>
-        <ToastContainer />
-      </section>
-      <section style={{ marginTop: "70px" }}>
-        <Footer />
-      </section>
-    </div>
+        </section>
+        <section style={{ marginTop: "70px" }}></section>
+      </div>
+    </LayoutMain>
   );
 }
 

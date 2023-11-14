@@ -1,11 +1,11 @@
 .headerMainBox {
-  width: 1080px;
+  max-width: 1080px;
   background-color: transparent;
   height: 40px;
 }
 .headerSecondBox {
   margin-top: 10px;
-  width: 1080px;
+  max-width: 1080px;
   background-color: transparent;
   display: flex;
   justify-content: space-between;
@@ -40,7 +40,7 @@
   height: 30px;
   border: 2px solid white;
   border-radius: 5px;
-  background-color: pink;
+  background-color: rgb(98, 196, 226);
   margin-bottom: 10px;
 }
 .cancelButton {

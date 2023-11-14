@@ -1,10 +1,12 @@
 import { updateDoc, doc } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import Modal from "react-modal";
-import { blogsCollection } from "../../firebase/myFirebase";
+import { blogsCollection, storage } from "../../../firebase/myFirebase";
 import "./EditProduct";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { Input } from "antd";
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 
 function EditProduct(props) {
   const customStyles = {
@@ -21,10 +23,21 @@ function EditProduct(props) {
       backgroundColor: " rgba(0, 0, 0, 0.8)",
     },
   };
-  const { openEditModal, selectedBlog, closeEditModal } = props;
+  const { openEditModal, closeEditModal, blogData } = props;
   const [inputValueTitle, setInputValueTitle] = useState();
   const [inputValueText, setInputValueText] = useState();
-  // console.log(selectedBlog);
+
+  const [file, setFile] = useState();
+
+  const handleFileChange = (e) => {
+    setFile(e.target.files[0]);
+  };
+  const uploadImage = async () => {
+    const storageRef = ref(storage, file.name);
+    const downloadImageUrl = await getDownloadURL(storageRef);
+
+    return downloadImageUrl;
+  };
 
   const handleInputTitle = (e) => {
     setInputValueTitle(e.target.value);
@@ -34,21 +47,23 @@ function EditProduct(props) {
   };
 
   useEffect(() => {
-    if (selectedBlog) {
-      setInputValueTitle(selectedBlog.title);
-      setInputValueText(selectedBlog.text);
+    if (blogData) {
+      setInputValueTitle(blogData.title);
+      setInputValueText(blogData.text);
     }
-  }, [selectedBlog]);
+  }, [blogData]);
 
   const handleCancelButton = () => {
     closeEditModal();
   };
 
   const handleSaveButton = async () => {
-    await updateDoc(doc(blogsCollection, selectedBlog.blogId), {
-      ...selectedBlog,
+    const imageUrl = await uploadImage();
+    await updateDoc(doc(blogsCollection, blogData.blogId), {
+      ...blogData,
       text: inputValueText,
       title: inputValueTitle,
+      blogImage: imageUrl,
     })
       .then((res) => {
         closeEditModal();
@@ -61,6 +76,7 @@ function EditProduct(props) {
   return (
     <Modal isOpen={openEditModal} style={customStyles}>
       <div
+        className="d-flex flex-direction-c"
         style={{
           marginTop: "10px",
 
@@ -78,6 +94,27 @@ function EditProduct(props) {
           value={inputValueTitle}
           onChange={handleInputTitle}
         ></textarea>
+        <div>
+          <img
+            src={blogData.blogImage}
+            alt={"blodDataImage"}
+            width="200px"
+            // height="150px"
+          />
+          <span>change to</span>
+          <img
+            // src={imageUrl}
+            alt={"blodDataImage"}
+            width="200px"
+            // height="150px"
+          />
+        </div>
+        <input
+          name="blogImage"
+          onChange={handleFileChange}
+          placeholder="choose file"
+          type="file"
+        ></input>
         <textarea
           className="OverDisAlign"
           style={{

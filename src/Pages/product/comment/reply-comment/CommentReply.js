@@ -1,17 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import { deleteDoc, doc } from "firebase/firestore";
-import { toast } from "react-toastify";
+
 import "react-toastify/dist/ReactToastify.css";
 import {
   commentCollection,
   replyCollection,
-} from "../../../firebase/myFirebase";
-import Like from "../../../icons/Like";
-import DislikeCounter from "../comment/Dislike-Counter";
-import LikeCounter from "../comment/Like-Counter";
+} from "../../../../firebase/myFirebase";
+import Like from "../../../../icons/Like";
+import DislikeCounter from "../Dislike-Counter";
+import LikeCounter from "../Like-Counter";
+import EditReplyCommentModal from "./EditReplyCommentModal";
+import CommentReplyEditAndDelete from "./CommentReplyEditAndDelete";
+import { toast } from "react-toastify";
 
 const CommentReply = (props) => {
   const { user, comment, replyCommentData } = props;
+  const [openEditReplyModal, setOpenEditReplyModal] = useState(false);
+  const [selectedReplyComment, setSelectedReplyComment] = useState({});
+  // console.log(selectedReplyComment);
+  const closeEditReplyModal = () => {
+    setOpenEditReplyModal(false);
+  };
 
   const hanldeDeleteReplyComment = async (commentId) => {
     await deleteDoc(doc(commentCollection, commentId))
@@ -95,26 +104,13 @@ const CommentReply = (props) => {
                       </div>
 
                       {replyComment.userId === user.uid && (
-                        <div className="d-flex flex-direction-row gap-20 align-c">
-                          <button
-                            style={{
-                              cursor: "pointer",
-                              width: "50px",
-                              height: "20px",
-                            }}
-                          >
-                            Edit
-                          </button>
-                          <button
-                            style={{
-                              cursor: "pointer",
-                              width: "50px",
-                              height: "20px",
-                            }}
-                          >
-                            Delete
-                          </button>
-                        </div>
+                        <CommentReplyEditAndDelete
+                          key={replyComment.replyCommentId}
+                          closeEditReplyModal={closeEditReplyModal}
+                          setSelectedReplyComment={setSelectedReplyComment}
+                          setOpenEditReplyModal={setOpenEditReplyModal}
+                          replyComment={replyComment}
+                        />
                       )}
                     </div>
                   </div>
@@ -122,6 +118,12 @@ const CommentReply = (props) => {
                     className="d-flex just-c flex-direction-c"
                   ></div>
                 </div>
+                <EditReplyCommentModal
+                  replyComment={replyComment}
+                  selectedReplyComment={selectedReplyComment}
+                  openEditReplyModal={openEditReplyModal}
+                  closeEditReplyModal={closeEditReplyModal}
+                />
               </div>
             </div>
           )

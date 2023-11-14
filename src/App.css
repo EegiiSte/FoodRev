@@ -28,6 +28,37 @@
   color: #61dafb;
 }
 
+img {
+  max-width: 100%;
+}
+.bgImageCover {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: calc(100vh - 64px - 44px);
+  padding-left: 80px;
+  padding-top: 130px;
+}
+.bigHomeText {
+  font-family: "Poppins", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 48px;
+  font-weight: 700;
+  max-width: 480px;
+  line-height: 56px;
+  color: white;
+  text-shadow: 0 0 10px black;
+}
+.headLogo {
+  font-family: "Agbalumo", Helvetica, Arial, sans-serif;
+  font-size: 32px;
+  color: white;
+}
+.headLogo > span {
+  color: #f04d50;
+}
+.footer {
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

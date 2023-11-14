@@ -5,12 +5,11 @@ import {
 } from "firebase/auth";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import * as yup from "yup";
-
-import { myAuthentication } from "../../firebase/myFirebase.js";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import "../../Pages/product/comment/comment.css";
+import * as yup from "yup";
+import { myAuthentication } from "../../firebase/myFirebase.js";
+import "../../Pages/Product/comment/comment.css";
 const validateForm = yup.object().shape({
   email: yup.string().email("Invalid email address").required(),
   password: yup
@@ -23,6 +22,7 @@ const validateForm = yup.object().shape({
 function SignInModal(props) {
   const { user } = props;
   const navigate = useNavigate();
+
   //   const navigateToSignUpPage = () => {
   //     navigate("/sign-up");
   //   };
@@ -70,7 +70,7 @@ function SignInModal(props) {
 
   const HandleCheckBox = (e) => {
     setFormValues({ ...formValues, checkbox: e.target.checked });
-    console.log(e);
+    console.log("SignInModal>", e);
   };
 
   const handleSignIn = async (e) => {
@@ -84,15 +84,18 @@ function SignInModal(props) {
         required: "All inputs must be required",
         // confirmPassword: "",
       });
-    } else if (formValues.checkbox === false) {
-      setFormValues({ ...formValues, email: "", password: "" });
-    } else if (
-      formErrors.email !== "" ||
-      formErrors.password !== "" ||
-      formErrors.checkbox === false
-    ) {
-      setFormErrors({ ...formErrors, required: "All error must be cleared" });
-    } else {
+    }
+    // if
+    // (formValues.checkbox === false) {
+    //   setFormValues({ ...formValues, email: "", password: "" });
+    // } else if (
+    //   formErrors.email !== "" ||
+    //   formErrors.password !== "" ||
+    //   formErrors.checkbox === false
+    // ) {
+    //   setFormErrors({ ...formErrors, required: "All error must be cleared" });
+    // } else
+    else {
       setFormErrors({ ...formErrors, required: "" });
       await signInWithEmailAndPassword(
         myAuthentication,
@@ -100,12 +103,10 @@ function SignInModal(props) {
         formValues.password
       )
         .then((res) => {
-          toast.success(
-            `Hello ${props.user.userName} Your Sign in successfull !`,
-            {
-              position: toast.POSITION.TOP_RIGHT,
-            }
-          );
+          console.log("SignInModal>email Login>", res);
+          toast.success(`Hello,${res.user.email} Your Sign in successfull !`, {
+            position: toast.POSITION.TOP_RIGHT,
+          });
           navigate("/");
         })
         .catch((err) => {
@@ -122,7 +123,7 @@ function SignInModal(props) {
     await signInWithPopup(myAuthentication, provider)
       .then((res) => {
         toast.success(
-          `Hello ${props.user.displayName} Your Google Sign in successfull !`,
+          `Hello,${res.user.email} Your Google Sign in successfull !`,
           {
             position: toast.POSITION.TOP_RIGHT,
           }
@@ -206,7 +207,6 @@ function SignInModal(props) {
           <button className="signToButton" onClick={handleSignInWithGoogle}>
             Sign in with Google
           </button>
-          <button className="signToButton">Sign in with Apple</button>
         </div>
       </div>
     </div>
