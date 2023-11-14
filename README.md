@@ -4,15 +4,15 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 <p align="center">
   <a href="https://github.com/EegiiSte/FoodRev">
-    <img src="./src/images/download.png
+    <img src="https://firebasestorage.googleapis.com/v0/b/foodrev-crud.appspot.com/o/download.png?alt=media&token=5729ee19-0aa7-4e7e-a379-76d20058111f
     " alt="Tests"
     width="30px"
       height="30px">
-    <img src="./src/images/images.png
+    <img src="https://firebasestorage.googleapis.com/v0/b/foodrev-crud.appspot.com/o/images.png?alt=media&token=72986d83-a146-4f6a-ad17-cf6f5a74274f
     " alt="Tests"
     width="30px"
       height="30px">
-    <img src="./src/images/images (1).png
+    <img src="https://firebasestorage.googleapis.com/v0/b/foodrev-crud.appspot.com/o/images%20(1).png?alt=media&token=5d08c68a-5cf5-465d-88a8-00ff8e78f902
     " alt="Tests"
     width="30px"
       height="30px">
