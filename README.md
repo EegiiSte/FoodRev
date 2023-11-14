@@ -1,6 +1,27 @@
-# Getting Started with Create React App
+# WalCome to Foodrev -
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+<p align="center">
+  <a href="https://github.com/EegiiSte/FoodRev">
+    <img src="./src/images/download.png
+    " alt="Tests"
+    width="30px"
+      height="30px">
+    <img src="./src/images/images.png
+    " alt="Tests"
+    width="30px"
+      height="30px">
+    <img src="./src/images/images (1).png
+    " alt="Tests"
+    width="30px"
+      height="30px">
+  </a>
+  <a href="https://foodrev-crud.web.app//">
+    <img src="./src/images/Screen Shot 2023-11-13 at 19.40.10.png">
+  </a>
+  
+</p>
 
 ## Available Scripts
 
@@ -14,57 +35,28 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
 
-### `npm test`
+Explore the captivating world of Mongolian culture, tradition, and history with Mongol-API, your gateway to this rich heritage. We're excited to introduce four key microservices that will elevate your developer experience.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+🔗 [**Foodrev Web**](https://foodrev-crud.web.app) : ( https://foodrev-crud.web.app/ )
 
-### `npm run build`
+## **Teachers** 📝
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+This project owes its existence to the collective efforts of all those who contribute — [contribute now](CONTRIBUTING.md).
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+<div align="center">
+  <a href="https://github.com/TRIE-Tech/mongol-api/graphs/contributors">
+  <img src="https://scontent-sea1-1.xx.fbcdn.net/v/t1.18169-9/1012330_589064904457832_88542895_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=7a1959&_nc_ohc=Tb9VCMVNIaUAX_ZF90L&_nc_ht=scontent-sea1-1.xx&oh=00_AfCVnA6LZirQ9c_S-wjiXxbPQvzSswuTFbB0qXrZh5JJeQ&oe=6562CC4D"
+      alt="Contributors"
+      width="100px"
+      height="100px" />
+  <img src="https://avatars.githubusercontent.com/u/91991743?v=4"
+      alt="Contributors"
+      width="100px"
+      height="100px" />
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+  </a>
+</div>
 
-### `npm run eject`
+## Authors
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+🎨 [Egi](https://github.com/EegiiSte)
