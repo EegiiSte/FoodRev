@@ -18,7 +18,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
       height="30px">
   </a>
   <a href="https://foodrev-crud.web.app//">
-    <img src="./src/images/Screen Shot 2023-11-13 at 19.40.10.png">
+    <img src="https://firebasestorage.googleapis.com/v0/b/foodrev-crud.appspot.com/o/Screen%20Shot%202023-11-13%20at%2019.40.10.png?alt=media&token=1b643fdc-93ca-4b5e-8665-219a721427f2">
   </a>
   
 </p>
