@@ -26,7 +26,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
 
-Explore the captivating world of Mongolian culture, tradition, and history with FoodRev, your gateway to this rich heritage. We're excited to introduce four key microservices that will elevate your developer experience.
+Foodrev: Explore tasty reviews, share your thoughts, and connect with foodies. It's your flavorful space for easy, fun, and delicious discussions!
 
 ## 🔗 [**FoodRev Web**](https://foodrev-crud.web.app) : ( https://foodrev-crud.web.app/ )
 
